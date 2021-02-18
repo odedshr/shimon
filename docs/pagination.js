@@ -1,5 +1,6 @@
-(function () {
+const setPage = (function () {
   const minBookWidth = 800;
+  const pages = [];
 
   function getStepSize(currentPageIndex) {
     if (window.innerWidth > minBookWidth && !(currentPageIndex % 2)) {
@@ -55,7 +56,8 @@
   }
 
   function onload() {
-    const pages = [...document.querySelector('.book').children];
+    [...document.querySelector('.book').children]
+      .forEach(function (page) { pages.push(page); });
 
     document
       .querySelector('.book_nav_backward')
@@ -67,4 +69,9 @@
   }
 
   window.addEventListener('load', onload);
+
+  return function setPage(pageNumber) {
+    const currentPage = document.querySelector('[data-page="current"]');
+    setCurrentPage(pages, currentPage, pageNumber);
+  }
 })();
