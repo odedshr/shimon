@@ -1,2 +1,1 @@
-# shimon
-Shimon Shmuel: A memoir (static website)
+# Shimon Shmuel: A memoir (static website)

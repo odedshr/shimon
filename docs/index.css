@@ -1,0 +1,155 @@
+html {
+  font-size: 62.5%;
+  height: 100vh; }
+
+body {
+  background-color: #4F7178;
+  color: #F2DEBD;
+  font-family: 'Gentium Book Basic', serif;
+  font-size: 1.6rem;
+  height: 98vh;
+  margin: 0;
+  padding: 0;
+  position: relative; }
+
+h1 {
+  font-weight: 400; }
+
+h2 {
+  font-family: 'Reenie Beanie', cursive;
+  font-weight: 400;
+  font-size: 4rem;
+  margin: 0; }
+
+.book_nav {
+  bottom: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  left: 2rem;
+  position: absolute;
+  z-index: 11;
+  width: calc(100vw - 4rem); }
+  .book_nav a {
+    background-color: #F2DEBD;
+    border-radius: 50%;
+    color: #4F7178;
+    height: 2rem;
+    text-align: center;
+    text-decoration: none;
+    width: 2rem; }
+
+.book {
+  background: #BF8176;
+  border-radius: 0.5rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  display: flex;
+  flex-wrap: wrap;
+  height: calc(100% - 2rem);
+  margin: 1rem;
+  padding: 0.5rem;
+  position: relative;
+  perspective: 100rem;
+  width: calc(1.8 * 100vw);
+  transform: translateX(-50%);
+  transition: transform 0.5s ease-in-out; }
+  @media screen and (min-width: 800px) {
+    .book {
+      transform: translateX(0);
+      width: auto; } }
+
+.page {
+  background-color: #F2DEBD;
+  box-sizing: border-box;
+  box-shadow: inset 3px 0px 20px rgba(0, 0, 0, 0.2), 0px 0px 15px rgba(0, 0, 0, 0.1);
+  color: #4F7178;
+  font-size: 1.8rem;
+  flex: 1 1 50%;
+  height: calc(100% - 1rem);
+  overflow: auto;
+  padding: 5rem;
+  position: absolute;
+  transform-origin: 100% 0;
+  width: calc(50% - 0.5rem);
+  right: 0.5rem; }
+  .page[data-page="current"] {
+    transform: rotateY(360deg);
+    z-index: 10; }
+    .page[data-page="current"] + .page {
+      z-index: 9; }
+      .page[data-page="current"] + .page + .page {
+        z-index: 8; }
+    @media screen and (max-width: 799px) {
+      .page[data-page="current"] ~ .page {
+        right: auto; }
+      .page[data-page="current"][data-anim="backward"] {
+        animation: pageBackAnim 0.5s;
+        transform-origin: 0 0;
+        z-index: 20; }
+        .page[data-page="current"][data-anim="backward"] + .page {
+          right: 0.5rem;
+          z-index: 15; }
+      .page[data-page="current"][data-anim="forward"] {
+        transition: transform 0.5s ease-in-out;
+        transform: rotateY(180deg);
+        transform-origin: 0 0;
+        z-index: 20; }
+        .page[data-page="current"][data-anim="forward"] + .page {
+          right: 0.5rem;
+          z-index: 15; } }
+  @media screen and (min-width: 800px) {
+    .page {
+      right: auto; }
+      .page:nth-child(2n) {
+        right: 0.5rem; }
+      .page[data-page="current"] + .page {
+        transform: rotateY(360deg); }
+        .page[data-page="current"] + .page + .page {
+          transform: rotateY(180deg);
+          transform-origin: 100% 0;
+          opacity: 0; }
+      .page[data-anim="backward"] + .page {
+        animation: pageBackAnim 0.5s;
+        transform-origin: 0 0;
+        z-index: 20; }
+        .page[data-anim="backward"] + .page + .page {
+          animation: dblPageCoverBackAnim 0.5s;
+          z-index: 20; }
+          .page[data-anim="backward"] + .page + .page + .page {
+            z-index: 15; }
+      .page[data-anim="forward"] + .page {
+        transition: transform 0.5s ease-in-out;
+        transform: rotateY(180deg);
+        transform-origin: 0 0;
+        z-index: 20; }
+        .page[data-anim="forward"] + .page + .page {
+          transition: transform 0.5s ease-in-out, opacity 1ms ease 0.25s;
+          transform: rotateY(0deg);
+          opacity: 1;
+          z-index: 20; }
+          .page[data-anim="forward"] + .page + .page + .page {
+            z-index: 15; } }
+  .page p {
+    line-height: 1.5; }
+    .page p:before {
+      content: "";
+      display: inline-block;
+      width: 1rem; }
+
+@keyframes pageBackAnim {
+  from {
+    transform: rotateY(180deg); }
+  to {
+    transform: rotateY(360deg); } }
+@keyframes dblPageCoverBackAnim {
+  0% {
+    transform: rotateY(0deg);
+    opacity: 1; }
+  49% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    transform: rotateY(180deg);
+    opacity: 0; } }
+
+/*# sourceMappingURL=index.css.map */
