@@ -36,7 +36,7 @@ h2 {
 }
 
 .book_nav {
-  bottom: 2.5rem;
+  bottom: 5rem;
   display: flex;
   justify-content: space-between;
   left: 2rem;
@@ -46,6 +46,7 @@ h2 {
 
   a {
     background-color: $clr-primary;
+    border: 1px solid $clr-bg; 
     border-radius: 50%;
     color: $clr-bg;
     height: 2rem;
@@ -124,6 +125,14 @@ h2 {
   width: calc(50% - 0.5rem);
   right: 0.5rem;
 
+  &:not([data-page-number="0"]):after {
+    bottom: 1rem;
+    content: attr(data-page-number);
+    font-size: 1rem;
+    position: absolute;
+    right: 1rem;
+  }
+
   &[data-page="current"] {
     transform: rotateY(360deg);
     z-index: 10;
@@ -171,6 +180,11 @@ h2 {
 
     &:nth-child(2n) {
       right: 0.5rem;
+    }
+
+    &:nth-child(2n + 1):after {
+      right: auto;
+      left: 1rem;
     }
 
     &[data-page="current"] + .page {
@@ -226,6 +240,10 @@ h2 {
   p {
     line-height: 1.5;
     
+    &:first-child {
+      margin-top: 0;
+    }
+
     &:before {
       content: "";
       display: inline-block;

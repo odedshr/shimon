@@ -1,77 +1,91 @@
-const setPage = (function () {
-  const minBookWidth = 800;
-  const pages = [];
-
-  function getStepSize(currentPageIndex) {
-    if (window.innerWidth > minBookWidth && !(currentPageIndex % 2)) {
-      return 2;
-    }
-
-    return 1;
-  }
-
-  function setCurrentPage(pages, currentPage, newCurrentIndex) {
-    const newCurrentPage = pages[newCurrentIndex];
-    newCurrentPage.setAttribute('data-page', 'current');
-    currentPage.removeAttribute('data-page');
-    return newCurrentPage;
-  }
-
-  function animatePageFlip(setCurrentPage, currentPage, direction) {
-    (direction === 'backward') && (currentPage = setCurrentPage());
-    currentPage.setAttribute('data-anim', direction);
-
-    setTimeout(function () {
-      currentPage.removeAttribute('data-anim');
-      (direction === 'forward') && setCurrentPage();
-    }, 500);
-  }
-
-  function onMoveBack(pages) {
-    const currentPage = document.querySelector('[data-page="current"]');
-    const currentPageIndex = [...pages].indexOf(currentPage)
-    const stepSize = getStepSize(currentPageIndex);
-
-    if (currentPageIndex - stepSize >= 0) {
-      animatePageFlip(
-        setCurrentPage.bind({}, pages, currentPage, currentPageIndex - stepSize),
-        currentPage,
-        'backward'
-      );
-    }
-  }
-
-  function onMoveNext(pages) {
-    const currentPage = document.querySelector('[data-page="current"]');
-    const currentPageIndex = [...pages].indexOf(currentPage)
-    const stepSize = getStepSize(currentPageIndex);
-
-    if (pages.length > currentPageIndex + stepSize) {
-      animatePageFlip(
-        setCurrentPage.bind({}, pages, currentPage, currentPageIndex + stepSize),
-        currentPage,
-        'forward'
-      );
-    }
-  }
-
-  function onload() {
-    [...document.querySelector('.book').children]
-      .forEach(function (page) { pages.push(page); });
-
-    document
-      .querySelector('.book_nav_backward')
-      .addEventListener('click', onMoveBack.bind({}, pages));
-
-    document
-      .querySelector('.book_nav_forward')
-      .addEventListener('click', onMoveNext.bind({}, pages));
-  }
-
-  window.addEventListener('load', onload);
-
-  return function setPage(pageNumber) {
-    const currentPage = document.querySelector('[data-page="current"]');
-    setCurrentPage(pages, currentPage, pageNumber);
-  }
+const minBookWidth = 800;
+function addPageNumber(pages) {
+    pages.forEach(page => page.pageElm.setAttribute('data-page-number', `${page.id}`));
+}
+const throttle = (function () {
+    let timerId;
+    return (func, delay) => {
+        if (timerId) {
+            return;
+        }
+        timerId = setTimeout(() => {
+            func();
+            timerId = undefined;
+        }, delay);
+    };
 })();
+function getCurrentPage(pages) {
+    const pageElm = document.querySelector('[data-page="current"]');
+    return pages.find(page => (page.pageElm === pageElm)) || pages[0];
+}
+function getStepSize(currentPageIndex) {
+    if (window.innerWidth > minBookWidth && !(currentPageIndex % 2)) {
+        return 2;
+    }
+    return 1;
+}
+function setCurrentPage(pages, currentPage, newCurrentIndex) {
+    currentPage.pageElm.removeAttribute('data-page');
+    const newCurrentPage = pages[newCurrentIndex];
+    newCurrentPage.pageElm.setAttribute('data-page', 'current');
+    location.hash = newCurrentPage.name;
+    return newCurrentPage;
+}
+function animatePageFlip(setCurrentPage, currentPage, direction) {
+    (direction === 'backward') && (currentPage = setCurrentPage());
+    currentPage.pageElm.setAttribute('data-anim', direction);
+    setTimeout(() => {
+        currentPage.pageElm.removeAttribute('data-anim');
+        (direction === 'forward') && setCurrentPage();
+    }, 500);
+}
+function onMoveBack(pages) {
+    const currentPage = getCurrentPage(pages);
+    const currentPageIndex = currentPage.id;
+    const stepSize = getStepSize(currentPageIndex);
+    if (currentPageIndex - stepSize >= 0) {
+        animatePageFlip(setCurrentPage.bind({}, pages, currentPage, currentPageIndex - stepSize), currentPage, 'backward');
+    }
+}
+function onMoveForward(pages) {
+    const currentPage = getCurrentPage(pages);
+    const currentPageIndex = currentPage.id;
+    const stepSize = getStepSize(currentPageIndex);
+    if (pages.length > currentPageIndex + stepSize) {
+        animatePageFlip(setCurrentPage.bind({}, pages, currentPage, currentPageIndex + stepSize), currentPage, 'forward');
+    }
+}
+function updateBackButton(btnElm, pages, pageNumber) {
+    if (pageNumber < 0) {
+        btnElm.setAttribute('disabled', 'true');
+        return;
+    }
+    btnElm.removeAttribute('disabled');
+    btnElm.setAttribute('href', `#${pages[pageNumber].name}`);
+}
+function updateForwardButton(btnElm, pages, pageNumber) {
+    if (pageNumber > pages.length) {
+        btnElm.setAttribute('disabled', 'true');
+        return;
+    }
+    btnElm.removeAttribute('disabled');
+    btnElm.setAttribute('href', `#${pages[pageNumber].name}`);
+}
+function preventDefaultAndThrottle(func, evt) {
+    evt.preventDefault();
+    throttle(func, 500);
+    return false;
+}
+function getPageSetter(pages, backBtn, forwardBtn) {
+    backBtn && backBtn.addEventListener('click', preventDefaultAndThrottle.bind({}, () => onMoveBack(pages)));
+    forwardBtn && forwardBtn.addEventListener('click', preventDefaultAndThrottle.bind({}, () => onMoveForward(pages)));
+    return (page) => {
+        const currentPage = getCurrentPage(pages);
+        const pageNumber = page.id;
+        setCurrentPage(pages, currentPage, pageNumber);
+        const stepSize = getStepSize(pageNumber);
+        backBtn && updateBackButton(backBtn, pages, pageNumber - stepSize);
+        forwardBtn && updateForwardButton(forwardBtn, pages, pageNumber + stepSize);
+    };
+}
+export { addPageNumber, getPageSetter };
