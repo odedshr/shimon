@@ -3,7 +3,7 @@ import { Page } from './Page.js';
 const minBookWidth = 800;
 
 function addPageNumber(pages: Page[]) {
-  pages.forEach(page => page.pageElm.setAttribute('data-page-number', `${page.id}`))
+  pages.forEach(page => page.pageElm.setAttribute('data-page-number', `${page.id + 1}`))
 }
 
 const throttle = (function () {
@@ -29,6 +29,7 @@ function getCurrentPage(pages: Page[]): Page {
 }
 
 function getStepSize(currentPageIndex: number) {
+  // if double-sided book AND current page is left side
   if (window.innerWidth > minBookWidth && !(currentPageIndex % 2)) {
     return 2;
   }
@@ -38,7 +39,14 @@ function getStepSize(currentPageIndex: number) {
 
 function setCurrentPage(pages: Page[], currentPage: Page, newCurrentIndex: number): Page {
   currentPage.pageElm.removeAttribute('data-page');
+
+  // if double-sided book AND current page is right side, load set left side as current
+  if (window.innerWidth > minBookWidth && (newCurrentIndex % 2)) {
+    newCurrentIndex--;
+  }
+
   const newCurrentPage = pages[newCurrentIndex];
+
   newCurrentPage.pageElm.setAttribute('data-page', 'current');
   location.hash = newCurrentPage.name;
 
@@ -114,10 +122,11 @@ function getPageSetter(pages: Page[], backBtn?: HTMLElement, forwardBtn?: HTMLEl
 
   return (page: Page) => {
     const currentPage = getCurrentPage(pages);
-    const pageNumber = page.id
+    const pageNumber = page.id;
+    const stepSize = getStepSize(pageNumber);
+
     setCurrentPage(pages, currentPage, pageNumber);
 
-    const stepSize = getStepSize(pageNumber);
     backBtn && updateBackButton(backBtn, pages, pageNumber - stepSize);
     forwardBtn && updateForwardButton(forwardBtn, pages, pageNumber + stepSize);
   }

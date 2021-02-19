@@ -1,6 +1,6 @@
 const minBookWidth = 800;
 function addPageNumber(pages) {
-    pages.forEach(page => page.pageElm.setAttribute('data-page-number', `${page.id}`));
+    pages.forEach(page => page.pageElm.setAttribute('data-page-number', `${page.id + 1}`));
 }
 const throttle = (function () {
     let timerId;
@@ -26,6 +26,9 @@ function getStepSize(currentPageIndex) {
 }
 function setCurrentPage(pages, currentPage, newCurrentIndex) {
     currentPage.pageElm.removeAttribute('data-page');
+    if (window.innerWidth > minBookWidth && (newCurrentIndex % 2)) {
+        newCurrentIndex--;
+    }
     const newCurrentPage = pages[newCurrentIndex];
     newCurrentPage.pageElm.setAttribute('data-page', 'current');
     location.hash = newCurrentPage.name;
@@ -82,8 +85,8 @@ function getPageSetter(pages, backBtn, forwardBtn) {
     return (page) => {
         const currentPage = getCurrentPage(pages);
         const pageNumber = page.id;
-        setCurrentPage(pages, currentPage, pageNumber);
         const stepSize = getStepSize(pageNumber);
+        setCurrentPage(pages, currentPage, pageNumber);
         backBtn && updateBackButton(backBtn, pages, pageNumber - stepSize);
         forwardBtn && updateForwardButton(forwardBtn, pages, pageNumber + stepSize);
     };
