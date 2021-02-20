@@ -6,6 +6,10 @@ function addPageNumber(pages: Page[]) {
   pages.forEach(page => page.pageElm.setAttribute('data-page-number', `${page.id + 1}`))
 }
 
+function getPageByScroll(pages: Page[]) {
+  return pages[(Math.round(pages.length * (window.innerHeight + window.scrollY) / document.body.offsetHeight))];
+}
+
 const throttle = (function () {
   let timerId: number | undefined;
 
@@ -132,4 +136,4 @@ function getPageSetter(pages: Page[], backBtn?: HTMLElement, forwardBtn?: HTMLEl
   }
 }
 
-export { addPageNumber, getPageSetter }
+export { addPageNumber, getPageSetter, getPageByScroll }

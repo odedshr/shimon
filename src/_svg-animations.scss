@@ -1,0 +1,51 @@
+@import 'vars';
+
+$children: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20, 21,22,23,24,25,26,27,28,29,30;
+
+.page[data-page="current"],
+.page[data-page="current"] + .page  {
+  svg {
+    .feature {
+      animation: animateFadeIn 1s ease-in-out both;
+    }
+
+    @each $i in $children {
+      .feature:nth-child(#{$i}) {
+        animation-delay: #{($i - 1)*0.2}s;
+      }
+    }
+
+    .label {
+      animation: animateFadeIn 1s ease-in-out both;
+    }
+
+    @each $i in $children {
+      .label:nth-child(#{$i}) {
+        animation-delay: #{0.5 + ($i - 1)*0.2}s;
+      }
+    }
+
+        .trail_step {
+      animation: animateFadeIn 1s ease-in-out both;
+      fill:none;
+      stroke:$clr-bg;
+      stroke-miterlimit:10;
+    }
+
+    @each $i in $children {
+      .trail_step:nth-child(#{$i}) {
+        animation-delay: #{1 + ($i - 1)*0.2}s;
+      }
+    }
+  }
+}
+
+@keyframes animateFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes animatePop {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}

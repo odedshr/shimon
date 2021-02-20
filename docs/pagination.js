@@ -2,6 +2,9 @@ const minBookWidth = 800;
 function addPageNumber(pages) {
     pages.forEach(page => page.pageElm.setAttribute('data-page-number', `${page.id + 1}`));
 }
+function getPageByScroll(pages) {
+    return pages[(Math.round(pages.length * (window.innerHeight + window.scrollY) / document.body.offsetHeight))];
+}
 const throttle = (function () {
     let timerId;
     return (func, delay) => {
@@ -91,4 +94,4 @@ function getPageSetter(pages, backBtn, forwardBtn) {
         forwardBtn && updateForwardButton(forwardBtn, pages, pageNumber + stepSize);
     };
 }
-export { addPageNumber, getPageSetter };
+export { addPageNumber, getPageSetter, getPageByScroll };

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "importHelpers": true,
+    "importHelpers": false,
     "removeComments": true,
     "target": "ES2015",
     "module": "ES2015",

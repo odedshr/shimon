@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+	<style type="text/css">
+		.st0{fill:none;stroke:#231F20;stroke-miterlimit:10;}
+		.st1{font-family:font-family: 'Reenie Beanie', cursive;}
+		.st2{font-size:26.4618px;}
+	</style>
+	<g class="features">
+		<g class="feature" id="mountain">
+			<polyline class="st0" points="62.58,274.24 132.37,204.44 204.24,276.32 	" />
+		</g>
+		<g class="feature" id="river">
+			<line class="st0" x1="62.58" y1="155.14" x2="250.86" y2="155.14" />
+		</g>
+	</g>
+	<g class="labels">
+		<g class="label" id="text_1">
+			<text transform="matrix(1 0 0 1 62.1003 96.9595)" class="st1 st2">
+				text 1
+			</text>
+		</g>
+		<g class="label" id="text_2">
+			<text transform="matrix(1 0 0 1 168.1571 96.9595)" class="st1 st2">
+				text 2
+			</text>
+		</g>
+		<g class="label" id="text_3">
+			<text transform="matrix(1 0 0 1 281.9641 96.9595)" class="st1 st2">
+				text 3
+			</text>
+		</g>
+		<g class="label" id="text_4">
+			<text transform="matrix(1 0 0 1 390.2152 96.9595)" class="st1 st2">
+				text 4
+			</text>
+		</g>
+	</g>
+	<g class="trail">
+		<line class="trail_step" x1="62.58" y1="354.44" x2="78.33" y2="354.44" />
+		<line class="trail_step" x1="83.88" y1="354.44" x2="99.63" y2="354.44" />
+		<line class="trail_step" x1="105.18" y1="354.44" x2="120.93" y2="354.44" />
+		<line class="trail_step" x1="126.48" y1="354.44" x2="142.23" y2="354.44" />
+		<line class="trail_step" x1="147.78" y1="354.44" x2="163.53" y2="354.44" />
+		<line class="trail_step" x1="169.08" y1="354.44" x2="184.83" y2="354.44" />
+		<line class="trail_step" x1="190.38" y1="354.44" x2="206.13" y2="354.44" />
+		<line class="trail_step" x1="211.68" y1="354.44" x2="227.43" y2="354.44" />
+	</g>
+</svg>
