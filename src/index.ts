@@ -1,7 +1,8 @@
 import { getPageIndex } from './book-parser.js';
 import { initTableOfContents } from './toc.js';
 import { getHashChangeHandler } from './hash-parser.js';
-import { getPageSetter, addPageNumber, getPageByScroll } from './pagination.js';
+import { getPageSetter, addPageNumber } from './pagination.js';
+import { getPageByScroll } from './page-scroll.js';
 import { embedAllSVGs } from './embed-svg.js';
 
 function init() {
@@ -13,10 +14,16 @@ function init() {
   if (tocElm) {
     initTableOfContents(pages, tocElm);
   }
+
+  const btnTOC = getElementOrCreateOne('btnTOC');
+  const btnPrev = getElementOrCreateOne('btnPrev');
+  const btnNext = getElementOrCreateOne('btnNext');
+
   const setPage = getPageSetter(
     pages,
-    document.querySelector('.book_nav_backward') as HTMLElement || undefined,
-    document.querySelector('.book_nav_forward') as HTMLElement || undefined
+    btnTOC,
+    btnPrev,
+    btnNext
   )
 
   const hashChangeHandler = getHashChangeHandler(pages, setPage);
@@ -29,5 +36,8 @@ function init() {
   hashChangeHandler();
 }
 
+function getElementOrCreateOne(btnId: string) {
+  return document.getElementById(btnId) || document.createElement('a');
+}
 
 window.addEventListener('load', init);

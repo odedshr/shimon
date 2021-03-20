@@ -1,9 +1,15 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 const minBookWidth = 800;
 function addPageNumber(pages) {
     pages.forEach(page => page.pageElm.setAttribute('data-page-number', `${page.id + 1}`));
-}
-function getPageByScroll(pages) {
-    return pages[(Math.round(pages.length * (window.innerHeight + window.scrollY) / document.body.offsetHeight))];
 }
 const throttle = (function () {
     let timerId;
@@ -33,44 +39,38 @@ function setCurrentPage(pages, currentPage, newCurrentIndex) {
         newCurrentIndex--;
     }
     const newCurrentPage = pages[newCurrentIndex];
-    newCurrentPage.pageElm.setAttribute('data-page', 'current');
-    location.hash = newCurrentPage.name;
+    if (newCurrentPage) {
+        newCurrentPage.pageElm.setAttribute('data-page', 'current');
+    }
     return newCurrentPage;
 }
-function animatePageFlip(setCurrentPage, currentPage, direction) {
-    (direction === 'backward') && (currentPage = setCurrentPage());
-    currentPage.pageElm.setAttribute('data-anim', direction);
-    setTimeout(() => {
-        currentPage.pageElm.removeAttribute('data-anim');
-        (direction === 'forward') && setCurrentPage();
-    }, 500);
+function animatePageFlip(setCurrentPage, currentPage, isStepForward) {
+    return new Promise(resolve => {
+        !isStepForward && (currentPage = setCurrentPage());
+        currentPage.pageElm.setAttribute('data-anim', isStepForward ? 'forward' : 'backward');
+        setTimeout(() => {
+            currentPage.pageElm.removeAttribute('data-anim');
+            isStepForward && setCurrentPage();
+            resolve(currentPage);
+        }, 500);
+    });
 }
-function onMoveBack(pages) {
-    const currentPage = getCurrentPage(pages);
-    const currentPageIndex = currentPage.id;
-    const stepSize = getStepSize(currentPageIndex);
-    if (currentPageIndex - stepSize >= 0) {
-        animatePageFlip(setCurrentPage.bind({}, pages, currentPage, currentPageIndex - stepSize), currentPage, 'backward');
-    }
+function updateHashTag(newPageHash) {
+    location.hash = newPageHash.substr(1);
 }
-function onMoveForward(pages) {
-    const currentPage = getCurrentPage(pages);
-    const currentPageIndex = currentPage.id;
-    const stepSize = getStepSize(currentPageIndex);
-    if (pages.length > currentPageIndex + stepSize) {
-        animatePageFlip(setCurrentPage.bind({}, pages, currentPage, currentPageIndex + stepSize), currentPage, 'forward');
-    }
-}
-function updateBackButton(btnElm, pages, pageNumber) {
+function updateNavButton(btnElm, pageNumber) {
     if (pageNumber < 0) {
         btnElm.setAttribute('disabled', 'true');
         return;
     }
     btnElm.removeAttribute('disabled');
-    btnElm.setAttribute('href', `#${pages[pageNumber].name}`);
 }
-function updateForwardButton(btnElm, pages, pageNumber) {
-    if (pageNumber > pages.length) {
+function updatePreviousButton(btnElm, pages, pageNumber) {
+    updateNavButton(btnElm, pageNumber);
+    (pageNumber > 0) && btnElm.setAttribute('href', `#${pages[pageNumber].name}`);
+}
+function updateNextButton(btnElm, pages, pageNumber) {
+    if (pageNumber >= pages.length) {
         btnElm.setAttribute('disabled', 'true');
         return;
     }
@@ -79,19 +79,23 @@ function updateForwardButton(btnElm, pages, pageNumber) {
 }
 function preventDefaultAndThrottle(func, evt) {
     evt.preventDefault();
-    throttle(func, 500);
+    throttle(func.bind(evt.target, evt), 500);
     return false;
 }
-function getPageSetter(pages, backBtn, forwardBtn) {
-    backBtn && backBtn.addEventListener('click', preventDefaultAndThrottle.bind({}, () => onMoveBack(pages)));
-    forwardBtn && forwardBtn.addEventListener('click', preventDefaultAndThrottle.bind({}, () => onMoveForward(pages)));
-    return (page) => {
-        const currentPage = getCurrentPage(pages);
+function getPageSetter(pages, tocBtn, prevBtn, nextBtn) {
+    prevBtn.addEventListener('click', evt => preventDefaultAndThrottle(updateHashTag.bind({}, prevBtn.getAttribute('href') || '#'), evt));
+    nextBtn.addEventListener('click', evt => preventDefaultAndThrottle(updateHashTag.bind({}, nextBtn.getAttribute('href') || '#'), evt));
+    return (page) => __awaiter(this, void 0, void 0, function* () {
+        let currentPage = getCurrentPage(pages);
         const pageNumber = page.id;
         const stepSize = getStepSize(pageNumber);
-        setCurrentPage(pages, currentPage, pageNumber);
-        backBtn && updateBackButton(backBtn, pages, pageNumber - stepSize);
-        forwardBtn && updateForwardButton(forwardBtn, pages, pageNumber + stepSize);
-    };
+        const step = pageNumber < currentPage.id ? -stepSize : stepSize;
+        yield animatePageFlip(() => (currentPage = setCurrentPage(pages, currentPage, pageNumber)), currentPage, step > 0);
+        updateNavButton(tocBtn, pageNumber - stepSize);
+        updatePreviousButton(prevBtn, pages, pageNumber - stepSize);
+        updateNextButton(nextBtn, pages, pageNumber + stepSize);
+        console.log('updating hashtag to ', currentPage);
+        location.hash = currentPage.name;
+    });
 }
-export { addPageNumber, getPageSetter, getPageByScroll };
+export { addPageNumber, getPageSetter };

@@ -1,4 +1,5 @@
 @import 'vars';
+@import 'svg-ui';
 @import 'svg-animations';
 
 html {
@@ -11,7 +12,7 @@ body {
   color: $clr-primary;
   font-family: 'Gentium Book Basic', serif;
   font-size: 1.6rem;
-  height: 1000vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   position: relative;
@@ -29,9 +30,15 @@ h2 {
 }
 
 .book_nav {
-  bottom: 5rem;
-  display: flex;
-  justify-content: space-between;
+  @supports(display: grid) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "toc ."
+      "prev next";
+  }
+  gap: 0.5rem;
   height: 0;
   left: 2rem;
   @supports(position: -webkit-sticky) {
@@ -40,22 +47,34 @@ h2 {
   @supports(position: sticky) {
     position: sticky;
   }
-  top: calc(100vh - 7rem);
+  top: calc(100vh - 12rem);
   width: calc(100vw - 4rem);
   z-index: 11;
 
   a {
-    background-color: $clr-primary;
-    border: 1px solid $clr-bg; 
-    border-radius: 50%;
     color: $clr-bg;
-    height: 2rem;
+    height: 3.2rem;
     text-align: center;
     text-decoration: none;
-    width: 2rem;
+    width: 3.2rem;
+
+    span {
+      display: none;
+    }
+
+    &[disabled="true"] {
+      opacity: 0.5;
+    }
   }
 }
 
+@supports(display: grid) {
+  .book_nav_toc {
+    grid-area: toc;
+  }
+  .book_nav_backward { grid-area: prev; }
+  .book_nav_forward { grid-area: next; justify-self: end; }
+}
 
 .book_toc {
   margin-top: 2rem;
