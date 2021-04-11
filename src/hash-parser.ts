@@ -7,7 +7,6 @@ function getHashChangeHandler(pages: Page[], setPage: (page: Page) => void) {
 
   return () => {
     const page = pageMap[location.hash.substr(1)] || pages[0];
-    console.log('hash changed', page);
     if (page) {
       setPage(page);
     }

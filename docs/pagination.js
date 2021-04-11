@@ -67,7 +67,7 @@ function updateNavButton(btnElm, pageNumber) {
 }
 function updatePreviousButton(btnElm, pages, pageNumber) {
     updateNavButton(btnElm, pageNumber);
-    (pageNumber > 0) && btnElm.setAttribute('href', `#${pages[pageNumber].name}`);
+    (pageNumber >= 0) && btnElm.setAttribute('href', `#${pages[pageNumber].name}`);
 }
 function updateNextButton(btnElm, pages, pageNumber) {
     if (pageNumber >= pages.length) {
@@ -90,11 +90,12 @@ function getPageSetter(pages, tocBtn, prevBtn, nextBtn) {
         const pageNumber = page.id;
         const stepSize = getStepSize(pageNumber);
         const step = pageNumber < currentPage.id ? -stepSize : stepSize;
-        yield animatePageFlip(() => (currentPage = setCurrentPage(pages, currentPage, pageNumber)), currentPage, step > 0);
+        if (currentPage.id !== page.id) {
+            yield animatePageFlip(() => (currentPage = setCurrentPage(pages, currentPage, pageNumber)), currentPage, step > 0);
+        }
         updateNavButton(tocBtn, pageNumber - stepSize);
         updatePreviousButton(prevBtn, pages, pageNumber - stepSize);
         updateNextButton(nextBtn, pages, pageNumber + stepSize);
-        console.log('updating hashtag to ', currentPage);
         location.hash = currentPage.name;
     });
 }

@@ -110,7 +110,7 @@ function updateNavButton(btnElm: HTMLElement, pageNumber: number) {
 
 function updatePreviousButton(btnElm: HTMLElement, pages: Page[], pageNumber: number) {
   updateNavButton(btnElm, pageNumber);
-  (pageNumber > 0) && btnElm.setAttribute('href', `#${pages[pageNumber].name}`);
+  (pageNumber >= 0) && btnElm.setAttribute('href', `#${pages[pageNumber].name}`);
 }
 
 function updateNextButton(btnElm: HTMLElement, pages: Page[], pageNumber: number) {
@@ -145,13 +145,14 @@ function getPageSetter(pages: Page[], tocBtn: HTMLElement, prevBtn: HTMLElement,
     const stepSize = getStepSize(pageNumber);
     const step = pageNumber < currentPage.id ? -stepSize : stepSize;
 
-    await animatePageFlip(() => (currentPage = setCurrentPage(pages, currentPage, pageNumber)), currentPage, step > 0);
+    if (currentPage.id !== page.id) {
+      await animatePageFlip(() => (currentPage = setCurrentPage(pages, currentPage, pageNumber)), currentPage, step > 0);
+    }
 
     updateNavButton(tocBtn, pageNumber - stepSize);
     updatePreviousButton(prevBtn, pages, pageNumber - stepSize);
     updateNextButton(nextBtn, pages, pageNumber + stepSize);
 
-    console.log('updating hashtag to ', currentPage);
     location.hash = currentPage.name;
   }
 }

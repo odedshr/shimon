@@ -15,7 +15,7 @@ function getTOCLink(page) {
     link.setAttribute('date-page', `${page.id + 1}`);
     link.classList.add(`tocItem_level-${page.level}`);
     link.classList.add(`toc_item`);
-    link.innerText = page.label;
+    link.innerText = page.label.toLocaleLowerCase();
     return link;
 }
 function addToTOC(tocElm, page) {
