@@ -4,6 +4,7 @@ import { getHashChangeHandler } from './hash-parser.js';
 import { getPageSetter, addPageNumber } from './pagination.js';
 import { getPageByScroll } from './page-scroll.js';
 import { embedAllSVGs } from './embed-svg.js';
+import { refreshBookSize } from './book-resize.js';
 
 function init() {
   const pages = getPageIndex('.book .page');
@@ -26,14 +27,20 @@ function init() {
     btnNext
   )
 
+  const bookElmStyle = ((document.querySelector('.book') || document.createElement('main')) as HTMLElement).style;
+
+
   const hashChangeHandler = getHashChangeHandler(pages, setPage);
   window.addEventListener('hashchange', hashChangeHandler);
   window.addEventListener('scroll', () => setPage(getPageByScroll(pages)));
+  window.addEventListener('resize', () => refreshBookSize(bookElmStyle));
 
   embedAllSVGs();
 
   // move to current page
   hashChangeHandler();
+
+  refreshBookSize(bookElmStyle);
 }
 
 function getElementOrCreateOne(btnId: string) {
