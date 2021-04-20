@@ -303,7 +303,9 @@ svg .secondary_bg {
 html {
   font-size: 62.5%;
   height: 100vh;
-  --color-primary: #212121; }
+  --color-primary: #212121;
+  --book-height: 840px;
+  --book-width: 1050px; }
 
 body {
   counter-reset: figure;
@@ -342,7 +344,7 @@ h2 {
   font-weight: 600;
   font-size: 1.6rem;
   letter-spacing: 0.1rem;
-  margin: 0;
+  margin: 6rem 0 4rem;
   text-transform: uppercase; }
 
 .book_nav {
@@ -414,11 +416,13 @@ h2 {
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
+  height: var(--book-height);
   margin: 0.5rem 0;
   padding: 0;
   perspective: 100rem;
   transform: translateX(-50%);
-  transition: all 0.25s ease-in-out; }
+  transition: all 0.25s ease-in-out;
+  width: var(--book-width); }
   @supports (position: -webkit-sticky) {
     .book {
       position: -webkit-sticky; } }
@@ -444,12 +448,12 @@ h2 {
   flex: 1 1 50%;
   height: 100%;
   margin: 0;
-  padding: 5rem 4rem 5rem 2rem;
+  padding: 5rem 6rem 5rem 2rem;
   position: absolute;
   transform-origin: 100% 0;
   right: 0;
   width: 50%; }
-  .page:first-child {
+  .page:nth-child(2) .page_content {
     align-items: center;
     display: flex;
     justify-content: center; }
@@ -466,7 +470,7 @@ h2 {
       z-index: 9; }
       .page[data-page="current"] + .page + .page {
         z-index: 8; }
-        .page[data-page="current"] + .page + .page ~ .page {
+        .page[data-page="current"] + .page + .page + .page ~ .page {
           display: none; }
     @media screen and (max-width: 799px) {
       .page[data-page="current"][data-anim="backward"] {
@@ -487,9 +491,9 @@ h2 {
   @media screen and (min-width: 800px) {
     .page:nth-child(2n) {
       background-image: url(./assets/page-left.png);
-      background-position: left;
+      background-position: right;
       left: 0;
-      padding: 5rem 2rem 5rem 4rem;
+      padding: 5rem 2rem 5rem 7rem;
       right: auto; }
     .page:nth-child(2n + 1) {
       left: auto;
@@ -529,11 +533,11 @@ h2 {
       content: "";
       display: inline-block;
       width: 1rem; }
-  .page a {
+  .page a:not(.toc_item) {
     position: relative; }
-    .page a, .page a a:visited {
+    .page a:not(.toc_item), .page a:not(.toc_item) a:visited {
       color: var(--color-primary); }
-    .page a:after {
+    .page a:not(.toc_item):after {
       content: "";
       display: block;
       height: 100%;
@@ -546,7 +550,7 @@ h2 {
       top: -.05rem;
       width: 0;
       z-index: -1; }
-    .page a:hover:after {
+    .page a:not(.toc_item):hover:after {
       background-color: white;
       width: 100%; }
 
@@ -574,7 +578,7 @@ figure {
   display: block;
   text-align: center; }
   figure img {
-    width: 50%;
+    width: 100%;
     height: auto; }
   figure figcaption {
     font-style: italic;

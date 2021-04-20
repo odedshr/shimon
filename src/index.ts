@@ -27,20 +27,17 @@ function init() {
     btnNext
   )
 
-  const bookElmStyle = ((document.querySelector('.book') || document.createElement('main')) as HTMLElement).style;
-
-
   const hashChangeHandler = getHashChangeHandler(pages, setPage);
   window.addEventListener('hashchange', hashChangeHandler);
   window.addEventListener('scroll', () => setPage(getPageByScroll(pages)));
-  window.addEventListener('resize', () => refreshBookSize(bookElmStyle));
+  window.addEventListener('resize', () => refreshBookSize());
 
   embedAllSVGs();
 
   // move to current page
   hashChangeHandler();
 
-  refreshBookSize(bookElmStyle);
+  refreshBookSize();
 }
 
 function getElementOrCreateOne(btnId: string) {

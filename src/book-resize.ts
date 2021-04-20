@@ -4,12 +4,10 @@ const bookDefaultHeight = 840;
 const bookMinWidth = 320;
 const proportions = bookDefaultHeight / bookDefaultWidth;
 const bookMinHeight = bookMinWidth * proportions;
+const rootStyle = document.documentElement.style;
 
-function refreshBookSize(bookElmStyle: CSSStyleDeclaration) {
-  const maxWidth = window.innerWidth;
-  const maxHeight = window.innerHeight;
-
-  let bookWidth = Math.max(bookMinWidth, bookDefaultWidth);
+function getBookSize(maxWidth: number, maxHeight: number) {
+  let width = Math.max(bookMinWidth, bookDefaultWidth);
   let ratio = proportions;
 
   // if (maxWidth <= mobileMaxScreenWidth) {
@@ -17,24 +15,30 @@ function refreshBookSize(bookElmStyle: CSSStyleDeclaration) {
   //   ratio *= 2;
   // }
 
-  let bookHeight = Math.max(bookMinHeight, bookWidth * ratio);
+  let height = Math.max(bookMinHeight, width * ratio);
 
-  if (bookWidth > maxWidth) {
-    ratio = maxWidth / bookWidth;
-    bookHeight *= ratio;
-    bookWidth *= ratio;
+  if (width > maxWidth) {
+    ratio = maxWidth / width;
+    height *= ratio;
+    width *= ratio;
   }
 
-  if (bookHeight > maxHeight) {
-    ratio = maxHeight / bookHeight;
-    bookWidth *= ratio;
-    bookHeight *= ratio;
+  if (height > maxHeight) {
+    ratio = maxHeight / height;
+    width *= ratio;
+    height *= ratio;
   }
 
+  console.log({ width, height });
 
+  return { width, height };
+}
 
-  bookElmStyle.height = `${Math.floor(bookHeight)}px`;
-  bookElmStyle.width = `${Math.floor(bookWidth)}px`;
+function refreshBookSize() {
+  const { width, height } = getBookSize(window.innerWidth, window.innerHeight);
+
+  rootStyle.setProperty('--book-height', `${Math.floor(height)}px`);
+  rootStyle.setProperty('--book-width', `${Math.floor(width)}px`);
 }
 
 export { refreshBookSize };

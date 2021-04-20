@@ -7,6 +7,8 @@ html {
   height: 100vh;
 
   --color-primary: #212121;
+  --book-height: 840px;
+  --book-width: 1050px;
 }
 
 body {
@@ -56,7 +58,7 @@ h2 {
   font-weight: 600;
   font-size: 1.6rem;
   letter-spacing: 0.1rem;
-  margin: 0;
+  margin: 6rem 0 4rem;
   text-transform: uppercase;
 }
 
@@ -148,11 +150,13 @@ h2 {
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
+  height: var(--book-height);
   margin: 0.5rem 0;
   padding: 0;
   perspective: 100rem;
   transform: translateX(-50%);
   transition: all 0.25s ease-in-out;
+  width: var(--book-width);
   
   @supports(position: -webkit-sticky) {
     position: -webkit-sticky;
@@ -181,16 +185,16 @@ h2 {
   flex: 1 1 50%;
   height: 100%;
   margin: 0;
-  padding: 5rem 4rem 5rem 2rem;
+  padding: 5rem 6rem 5rem 2rem;
   position: absolute;
   transform-origin: 100% 0;
   right: 0;
   width: 50%;
 
-  &:first-child {
+  &:nth-child(2) .page_content {
     align-items: center;
     display: flex;
-    justify-content: center;;
+    justify-content: center;
   }
 
   &:not([data-page-number="0"]):after { // page-number
@@ -211,7 +215,7 @@ h2 {
       & + .page {
         z-index: 8;
 
-        & ~ .page { // otherwise the page is very heavy
+        & + .page ~ .page { // otherwise the page is very heavy
           display: none;
         }
       }
@@ -246,9 +250,9 @@ h2 {
   @media screen and (min-width: $scr-tablet-min) {
     &:nth-child(2n) { // every odd page is left-side
       background-image: url(./assets/page-left.png);
-      background-position: left;
+      background-position: right;
       left: 0;
-      padding: 5rem 2rem 5rem 4rem;
+      padding: 5rem 2rem 5rem 7rem;
       right: auto; // on tablet, default side is left
     }
 
@@ -320,7 +324,7 @@ h2 {
     }
   }
 
-  a {
+  a:not(.toc_item) {
     position: relative;
 
     &, a:visited {
@@ -371,7 +375,7 @@ figure {
   text-align: center;
 
   img {
-    width: 50%;
+    width: 100%;
     height: auto;
   }
 

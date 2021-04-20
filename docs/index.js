@@ -16,14 +16,13 @@ function init() {
     const btnPrev = getElementOrCreateOne('btnPrev');
     const btnNext = getElementOrCreateOne('btnNext');
     const setPage = getPageSetter(pages, btnTOC, btnPrev, btnNext);
-    const bookElmStyle = (document.querySelector('.book') || document.createElement('main')).style;
     const hashChangeHandler = getHashChangeHandler(pages, setPage);
     window.addEventListener('hashchange', hashChangeHandler);
     window.addEventListener('scroll', () => setPage(getPageByScroll(pages)));
-    window.addEventListener('resize', () => refreshBookSize(bookElmStyle));
+    window.addEventListener('resize', () => refreshBookSize());
     embedAllSVGs();
     hashChangeHandler();
-    refreshBookSize(bookElmStyle);
+    refreshBookSize();
 }
 function getElementOrCreateOne(btnId) {
     return document.getElementById(btnId) || document.createElement('a');
