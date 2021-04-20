@@ -9,6 +9,7 @@ html {
   --color-primary: #212121;
   --book-height: 840px;
   --book-width: 1050px;
+  --body-height: 100vh;
 }
 
 body {
@@ -18,6 +19,7 @@ body {
   color: $clr-primary;
   font-family: 'EB Garamond', serif;
   font-size: 1.6rem;
+  height: var(--body-height);
   margin: 0;
   min-height: 100vh;
   padding: 0;
@@ -92,7 +94,7 @@ h2 {
 
 .book_nav_backward,
 .book_nav_forward {
-  bottom: 1rem;
+  bottom: 1.5rem;
   height: 3.2rem;
   width: 3.2rem;
 
@@ -102,7 +104,7 @@ h2 {
 }
 
 .book_nav_backward { 
-  left: 5rem;
+  left: 7rem;
 
   svg {
     transform: rotate(180deg);
@@ -110,7 +112,7 @@ h2 {
 }
 
 .book_nav_forward {
-  right: 5rem;
+  right: 7rem;
 }
 
 .toc_item {
@@ -154,7 +156,8 @@ h2 {
   margin: 0.5rem 0;
   padding: 0;
   perspective: 100rem;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   transition: all 0.25s ease-in-out;
   width: var(--book-width);
   
@@ -169,8 +172,7 @@ h2 {
     background-position: center;
     background-size: contain;
     margin: 0.5rem auto;
-    top: 1rem;
-    transform: translateX(0);
+    transform: translate(0, -50%);
   }
 }
 

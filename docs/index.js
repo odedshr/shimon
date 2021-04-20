@@ -2,7 +2,7 @@ import { getPageIndex } from './book-parser.js';
 import { initTableOfContents } from './toc.js';
 import { getHashChangeHandler } from './hash-parser.js';
 import { getPageSetter, addPageNumber } from './pagination.js';
-import { getPageByScroll } from './page-scroll.js';
+import { getPageByScroll, updateBodyHeight } from './page-scroll.js';
 import { embedAllSVGs } from './embed-svg.js';
 import { refreshBookSize } from './book-resize.js';
 function init() {
@@ -18,10 +18,11 @@ function init() {
     const setPage = getPageSetter(pages, btnTOC, btnPrev, btnNext);
     const hashChangeHandler = getHashChangeHandler(pages, setPage);
     window.addEventListener('hashchange', hashChangeHandler);
-    window.addEventListener('scroll', () => setPage(getPageByScroll(pages)));
+    window.addEventListener('scroll', () => { updateBodyHeight(pages.length); setPage(getPageByScroll(pages)); });
     window.addEventListener('resize', () => refreshBookSize());
     embedAllSVGs();
     hashChangeHandler();
+    updateBodyHeight(pages.length);
     refreshBookSize();
 }
 function getElementOrCreateOne(btnId) {
