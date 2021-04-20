@@ -381,6 +381,32 @@ figure {
     height: auto;
   }
 
+  &.photo {
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: -0.5rem;
+      right: -0.5rem;
+      border-width: 0 32px 32px 0;
+      border-style: solid;
+      border-color: transparent rgba(255,255,255,0.5) transparent rgba(255,255,255,0.5);
+      box-shadow: 1px -1px 1px rgba(0,0,0,0.1);
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 1.7rem;
+      left: -0.5rem;
+      border-width: 0 32px 32px 0;
+      border-style: solid;
+      border-color: rgba(255,255,255,0.5) transparent rgba(255,255,255,0.5) transparent;
+      box-shadow: -1px 1px 1px rgba(0,0,0,0.1);
+    }
+  }
+
   figcaption {
     font-style: italic;
     font-size: 1.4rem;
