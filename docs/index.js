@@ -2,7 +2,7 @@ import { getPageIndex } from './book-parser.js';
 import { initTableOfContents } from './toc.js';
 import { getHashChangeHandler } from './hash-parser.js';
 import { getPageSetter, addPageNumber } from './pagination.js';
-import { getPageByScroll, updateBodyHeight } from './page-scroll.js';
+import { getPageNumberByScroll, updateBodyHeight, setVerticalScroll } from './page-scroll.js';
 import { embedAllSVGs } from './embed-svg.js';
 import { refreshBookSize } from './book-resize.js';
 function init() {
@@ -16,14 +16,18 @@ function init() {
     const btnPrev = getElementOrCreateOne('btnPrev');
     const btnNext = getElementOrCreateOne('btnNext');
     const setPage = getPageSetter(pages, btnTOC, btnPrev, btnNext);
-    const hashChangeHandler = getHashChangeHandler(pages, setPage);
+    const pageCount = pages.length;
+    const hashChangeHandler = getHashChangeHandler(pages, (page) => { setPage(page); setVerticalScroll(getPagePosition(page, pages)); });
     window.addEventListener('hashchange', hashChangeHandler);
-    window.addEventListener('scroll', () => { updateBodyHeight(pages.length); setPage(getPageByScroll(pages)); });
-    window.addEventListener('resize', () => refreshBookSize());
+    window.addEventListener('scroll', () => setPage(pages[getPageNumberByScroll(pageCount)]));
+    window.addEventListener('resize', () => { updateBodyHeight(pageCount); refreshBookSize(); });
     embedAllSVGs();
     hashChangeHandler();
-    updateBodyHeight(pages.length);
+    updateBodyHeight(pageCount);
     refreshBookSize();
+}
+function getPagePosition(page, pages) {
+    return pages.indexOf(page) / pages.length;
 }
 function getElementOrCreateOne(btnId) {
     return document.getElementById(btnId) || document.createElement('a');

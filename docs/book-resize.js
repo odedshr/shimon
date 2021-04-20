@@ -19,7 +19,6 @@ function getBookSize(maxWidth, maxHeight) {
         width *= ratio;
         height *= ratio;
     }
-    console.log({ width, height });
     return { width, height };
 }
 function refreshBookSize() {
