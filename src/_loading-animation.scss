@@ -6,6 +6,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 16rem;
+  z-index: 100;
 }
 
 body[data-state^="loading"] {
@@ -46,9 +47,7 @@ body[data-state="loading-background"] {
 
     .signature {
       transform: translate(0);
-      bottom: 1rem;
-      left: auto;
-      right: 1rem;
-      top: auto;
+      left: 1rem;
+      top: 1rem;
     }
   }

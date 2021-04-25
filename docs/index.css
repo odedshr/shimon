@@ -307,7 +307,8 @@ svg .secondary_bg {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 16rem; }
+  width: 16rem;
+  z-index: 100; }
 
 body[data-state^="loading"] .signature {
   display: block; }
@@ -386,10 +387,8 @@ body[data-state="loading-background"] .signature {
   display: block; }
 body[data-state="loading-background"] .signature {
   transform: translate(0);
-  bottom: 1rem;
-  left: auto;
-  right: 1rem;
-  top: auto; }
+  left: 1rem;
+  top: 1rem; }
 
 .book_cover {
   height: 100vh;
@@ -614,7 +613,7 @@ h2 {
   font-weight: 600;
   font-size: 1.6rem;
   letter-spacing: 0.1rem;
-  margin: 6rem 0 4rem;
+  margin: 6rem 0 2rem;
   text-transform: uppercase; }
 
 .toc_item {
@@ -644,6 +643,8 @@ h2 {
   height: 100%; }
   .page_content p {
     line-height: 1.5; }
+    .page_content p:first-of-type {
+      margin-top: 4rem; }
     .page_content p:first-child {
       margin-top: 0; }
     .page_content p:before {
