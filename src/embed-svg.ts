@@ -19,10 +19,13 @@ async function embedSVG(imgElm: HTMLImageElement) {
 
     imgElm.parentNode.replaceChild(svgElm, imgElm);
   }
+
+  return svgElm;
 }
 
 function embedAllSVGs() {
-  document.querySelectorAll('img[data-svg="embed"]').forEach(elm => embedSVG(elm as HTMLImageElement));
+  const svgImages = Array.from(document.querySelectorAll('img[data-svg="embed"]'));
+  return Promise.all(svgImages.map(elm => embedSVG(elm as HTMLImageElement)));
 }
 
-export { embedAllSVGs }; 
+export { embedAllSVGs };

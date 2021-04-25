@@ -1,0 +1,54 @@
+.signature {
+  display : none;
+  height: 5rem;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16rem;
+}
+
+body[data-state^="loading"] {
+  .signature { display : block; };
+
+  &[data-loading] {
+    .layer-1 { opacity: 0.5;}
+    .layer-2 { opacity: 0;}
+    .layer-3 { opacity: 0;}
+    .layer-4 { opacity: 0;}
+    .layer-5 { opacity: 0;}
+    .layer-6 { opacity: 0;}
+    .layer-7 { opacity: 0;}
+    .layer-8 { opacity: 0;}
+    .layer-9 { opacity: 0;}
+    .layer-10 { opacity: 0;}
+    .layer-11 { opacity: 0;}
+    .layer-12 { opacity: 0;}
+
+  }
+  &[data-loading^="."] { .layer-1 { opacity: 1;} .layer-2 { opacity: 0.5;} }
+  &[data-loading^=".."] { .layer-2 { opacity: 1;} .layer-3 { opacity: 0.5;} }
+  &[data-loading^="..."] { .layer-3 { opacity: 1;} .layer-4 { opacity: 0.5;} }
+  &[data-loading^="...."] { .layer-4 { opacity: 1;} .layer-5 { opacity: 0.5;} }
+  &[data-loading^="....."] { .layer-5 { opacity: 1;} .layer-6 { opacity: 0.5;} }
+  &[data-loading^="......"] { .layer-6 { opacity: 1;} .layer-7 { opacity: 0.5;} }
+  &[data-loading^="......."] { .layer-7 { opacity: 1;} .layer-8 { opacity: 0.5;} }
+  &[data-loading^="........"] { .layer-8 { opacity: 1;} .layer-9 { opacity: 0.5;} }
+  &[data-loading^="........."] { .layer-9 { opacity: 1;} .layer-10 { opacity: 0.5;} }
+  &[data-loading^=".........."] { .layer-10 { opacity: 1;} .layer-11 { opacity: 0.5;} }
+  &[data-loading^="..........."] { .layer-11 { opacity: 1;} .layer-12 { opacity: 0.5;} }
+  &[data-loading^="............"] { .layer-12 { opacity: 1;} }
+
+}
+
+body[data-state="loading-background"] {
+    .signature { display : block; };
+
+    .signature {
+      transform: translate(0);
+      bottom: 1rem;
+      left: auto;
+      right: 1rem;
+      top: auto;
+    }
+  }

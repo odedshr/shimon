@@ -1,40 +1,86 @@
-import { Page } from './Page.js';
+import { PageList } from './Page.js';
 
-function getAnchor(page: Page) {
-  const anchor = document.createElement('a');
-  anchor.setAttribute('name', page.name);
-  anchor.setAttribute('hidden', 'true');
-  anchor.innerText = page.label;
-  anchor.setAttribute('in-toc', `${page.inToc}`);
-
-  return anchor;
+type TOCLink = {
+  url: string;
+  elm: HTMLElement;
 }
 
-function addAnchor(page: Page) {
-  page.pageElm.prepend(getAnchor(page));
+type TOCLinkMap = { [url: string]: TOCLink }
+
+class TOCLinks extends Array<TOCLink> {
+  linkMap: TOCLinkMap = {};
+
+  push(...items: TOCLink[]) {
+    const output = super.push(...items);
+    items.forEach(link => {
+      this.linkMap[link.url] = link;
+    });
+
+    return output;
+  }
+
+  get(url: string) {
+    return this.linkMap[url];
+  }
 }
 
-function getTOCLink(page: Page) {
-  const link = document.createElement('a');
-
-  link.setAttribute('href', `#${page.name}`);
-  link.setAttribute('date-page', `${page.id + 1}`);
-  link.classList.add(`tocItem_level-${page.level}`);
-  link.classList.add(`toc_item`);
-  link.innerText = page.label.toLocaleLowerCase();
-
-  return link;
+function clearTOCLinksPageNumbers() {
+  Array.from(document.querySelectorAll('.toc_item')).forEach(link => link.setAttribute('date-page', ''));
 }
 
-function addToTOC(tocElm: HTMLElement, page: Page) {
-  tocElm.appendChild(getTOCLink(page));
+function appendTOCLinks(tocHeader: HTMLElement, tocLinks: TOCLinks) {
+  const tocHeaderParent = tocHeader.parentElement;
+  const tocHeaderSibling = tocHeader.nextSibling;
+
+  tocLinks.forEach(tocLink => tocHeaderParent?.insertBefore(tocLink.elm, tocHeaderSibling));
 }
 
-function initTableOfContents(pages: Page[], tocElm: HTMLElement) {
-  pages.forEach(addAnchor);
-  pages
-    .filter(page => page.inToc)
-    .forEach(page => addToTOC(tocElm, page));
+
+function getTOCLinks(headers: HTMLElement[]): TOCLinks {
+  const output = new TOCLinks();
+
+  headers.forEach(header => {
+    const level = (+header.nodeName.replace(/\D/g, '')) - 1;
+    const elm = document.createElement('a');
+    const url = header.getAttribute('name')?.trim() || '';
+
+    elm.classList.add(`tocItem_level-${level}`);
+    elm.classList.add(`toc_item`);
+    elm.setAttribute('href', `#${url}`);
+    elm.innerText = header.innerText.toLocaleLowerCase();
+
+    output.push({ url, elm });
+  });
+
+  return output;
 }
 
-export { initTableOfContents };
+function initHeaders() {
+  return Array.from(document.querySelectorAll('.page h2:not([not-in-toc]), .page h3:not([not-in-toc])'))
+    .map(header => {
+      const name = (header as HTMLElement).innerText
+        .toLowerCase()
+        .replace(/\s/g, '-')
+        .replace(/[^A-Za-z0-9\-]/g, '');
+
+      const anchor = document.createElement('a');
+      anchor.setAttribute('name', name);
+      header.setAttribute('name', name);
+      header.prepend(anchor);
+
+      return header as HTMLElement;
+    });
+}
+
+function refreshTOCLinks(tocLinks: TOCLinks, pages: PageList) {
+  tocLinks.forEach(tocLink => {
+    const page = pages.get(tocLink.url);
+    if (page) {
+      tocLink.elm.setAttribute('date-page', `${page.id + 1}`);
+    } else {
+      tocLink.elm.removeAttribute('date-page');
+    }
+  });
+}
+
+export { TOCLinks, getTOCLinks, appendTOCLinks, initHeaders, refreshTOCLinks, clearTOCLinksPageNumbers };

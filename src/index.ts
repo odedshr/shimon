@@ -1,54 +1,79 @@
-import { getPageIndex } from './book-parser.js';
-import { initTableOfContents } from './toc.js';
-import { getHashChangeHandler } from './hash-parser.js';
-import { getPageSetter, addPageNumber } from './pagination.js';
-import { getPageNumberByScroll, updateBodyHeight, setVerticalScroll } from './page-scroll.js';
+import { TOCLinks, initHeaders, getTOCLinks, appendTOCLinks, clearTOCLinksPageNumbers, refreshTOCLinks } from './toc.js';
+import { getPageByLocation, getCurrentPageId } from './hash-parser.js';
+import { paginateBook } from './pagination.js';
+import { initNavButtons, getPageSetter, getCurrentPage, updatePagePositionDescription } from './navigation.js';
+import { initScrollHandler, setVerticalScroll, updateBodyHeight } from './page-scroll.js';
 import { embedAllSVGs } from './embed-svg.js';
-import { refreshBookSize } from './book-resize.js';
-import { Page } from './Page.js';
+import { Page, PageList } from './Page.js';
+import { throttle } from './throttle.js';
 
-function init() {
-  const pages = getPageIndex('.book .page');
+const pageList: PageList = new PageList();
+const tocLinks: TOCLinks = new TOCLinks();
 
-  addPageNumber(pages);
+async function init() {
+  initNavButtons(pageList, getElementByIdOrCreateOne('btnPrev'), getElementByIdOrCreateOne('btnNext'));
 
-  const tocElm: HTMLElement | null = document.querySelector('.book_toc')
-  if (tocElm) {
-    initTableOfContents(pages, tocElm);
-  }
+  const setPage = getPageSetter();
 
-  const btnTOC = getElementOrCreateOne('btnTOC');
-  const btnPrev = getElementOrCreateOne('btnPrev');
-  const btnNext = getElementOrCreateOne('btnNext');
+  tocLinks.push(...getTOCLinks(initHeaders()));
+  // add anchors to headers; create table of content links based on headers and adds them to the page;
+  appendTOCLinks(
+    getElementOrCreateOne('.book_toc'),
+    tocLinks
+  );
 
-  const setPage = getPageSetter(
-    pages,
-    btnTOC,
-    btnPrev,
-    btnNext
-  )
+  await embedAllSVGs();
 
-  const pageCount = pages.length;
-  const hashChangeHandler = getHashChangeHandler(pages, (page: Page) => { setPage(page); setVerticalScroll(getPagePosition(page, pages)) });
-  window.addEventListener('hashchange', hashChangeHandler);
-  window.addEventListener('scroll', () => setPage(pages[getPageNumberByScroll(pageCount)]));
-  window.addEventListener('resize', () => { updateBodyHeight(pageCount); refreshBookSize() });
+  window.addEventListener('hashchange', handleHashChange.bind({}, setPage));
+  window.addEventListener('resize', () => throttle(async () => pageList.set(await formatBook(tocLinks)), 500));
 
-  embedAllSVGs();
+  pageList.set(await formatBook(tocLinks));
+  handleHashChange(setPage);
 
-  // move to current page
-  hashChangeHandler();
+  initScrollHandler(pageList, setPage);
+}
 
-  updateBodyHeight(pageCount);
-  refreshBookSize();
+function handleHashChange(setPage: (pages: PageList, page: Page) => void) {
+  const page = getPageByLocation(pageList);
+  setPage(pageList, page);
+  setVerticalScroll(getPagePosition(page, pageList));
 }
 
 function getPagePosition(page: Page, pages: Page[]) {
   return pages.indexOf(page) / pages.length;
 }
 
-function getElementOrCreateOne(btnId: string) {
-  return document.getElementById(btnId) || document.createElement('a');
+function updateProgress(value: number) {
+  if (value === -1) {
+    document.body.setAttribute('data-state', 'loading-background');
+  } else {
+    document.body.setAttribute('data-loading', ".".repeat(Math.floor(value * 100 / 8)));
+  }
+}
+
+async function formatBook(tocLinks: TOCLinks) {
+  document.body.setAttribute('data-state', 'loading');
+
+  clearTOCLinksPageNumbers();
+
+  const pages = await paginateBook(updateProgress, getCurrentPageId());
+
+  refreshTOCLinks(tocLinks, pages);
+
+  updateBodyHeight(pageList.length);
+
+  document.body.setAttribute('data-state', 'idle');
+  document.body.removeAttribute('data-loading');
+
+  return pages;
+}
+
+function getElementByIdOrCreateOne(elmId: string, tag: string = 'a') {
+  return document.getElementById(elmId) || document.createElement(tag);
+}
+
+function getElementOrCreateOne(query: string, tag: string = 'a') {
+  return (document.querySelector(query) || document.createElement(tag)) as HTMLElement;
 }
 
 window.addEventListener('load', init);

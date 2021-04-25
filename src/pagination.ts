@@ -1,160 +1,92 @@
-import { Page } from './Page.js';
+import { PageList, Page } from './Page.js';
 
-const minBookWidth = 800;
+function getAnchor(pageId: string) {
+  const anchor = document.createElement('a');
+  anchor.classList.add('page-anchor');
+  anchor.setAttribute('name', pageId);
+  anchor.setAttribute('hidden', 'true');
 
-function addPageNumber(pages: Page[]) {
-  pages.forEach(page => page.pageElm.setAttribute('data-page-number', `${page.id + 1}`))
+  return anchor;
 }
 
-const throttle = (function () {
-  let timerId: number | undefined;
+function getNewPage(id: number, tocSlug?: string): Page {
+  const slug = `page-${id + 1}`;
 
-  return (func: Function, delay: number) => {
-    // If setTimeout is already scheduled, no need to do anything
-    if (timerId) {
-      return
+  const pageElm = document.createElement('article');
+  pageElm.classList.add('page');
+  pageElm.setAttribute('name', slug);
+  pageElm.appendChild(getAnchor(slug))
+
+  const pageContentElm = document.createElement('section');
+  pageContentElm.classList.add('page_content')
+  pageElm.appendChild(pageContentElm);
+
+  return { pageElm, pageContentElm, id, slug, tocSlug };
+}
+
+function addPage(pageList: PageList, bookElm: HTMLElement, headerSlug?: string) {
+  const page = getNewPage(pageList.length, headerSlug);
+  pageList.push(page);
+  bookElm.appendChild(page.pageElm);
+
+  return page;
+}
+
+function isMatch(page: Page, slug: string) {
+  return page.slug === slug || page.tocSlug === slug;
+}
+
+function removeAllPages() {
+  [...document.querySelectorAll('.page')].forEach(page => page.remove());
+}
+
+async function paginateBook(report: (status: number, page: Page) => void, currentPageId: string): Promise<PageList> {
+  const bookElm: HTMLElement = document.querySelector('.book') || document.createElement('div');
+  const pageList = new PageList();
+  const items = [...document.querySelectorAll('.page > *:not(.page-anchor)')];
+  const itemCount = items.length - 1;
+
+  removeAllPages();
+
+  let page = addPage(pageList, bookElm, undefined);
+  let section = page.pageContentElm;
+  const maxHeight = section.offsetHeight;
+  let i = 0;
+
+  const addNextItem = (resolve: (value: PageList | PromiseLike<PageList>) => void) => setTimeout(() => {
+    const item = items[i] as HTMLElement;
+    const itemIsHeader = (item.nodeName[0] === 'H' && section.children.length > 0)
+
+    if (!itemIsHeader) {
+      section.appendChild(item);
     }
 
-    // Schedule a setTimeout after delay seconds
-    timerId = setTimeout(() => {
-      func();
-      timerId = undefined;
-    }, delay)
-  }
-})();
+    if (section.scrollHeight > maxHeight || itemIsHeader) {
+      if (isMatch(page, currentPageId)) {
+        pageList.setCurrent(page);
+        report(-1, page);
+      }
 
-function getCurrentPage(pages: Page[]): Page {
-  const pageElm = document.querySelector('[data-page="current"]');
-  return pages.find(page => (page.pageElm === pageElm)) || pages[0];
-}
-
-function getStepSize(currentPageIndex: number) {
-  // if double-sided book AND current page is left side
-  if (window.innerWidth > minBookWidth && !(currentPageIndex % 2)) {
-    return 2;
-  }
-
-  return 1;
-}
-
-function setCurrentPage(pages: Page[], currentPage: Page, newCurrentIndex: number): Page {
-  currentPage.pageElm.removeAttribute('data-page');
-
-  // if double-sided book AND current page is right side, load set left side as current
-  if (window.innerWidth > minBookWidth && (newCurrentIndex % 2)) {
-    newCurrentIndex--;
-  }
-
-  const newCurrentPage = pages[newCurrentIndex];
-
-  if (newCurrentPage) {
-    newCurrentPage.pageElm.setAttribute('data-page', 'current');
-  }
-
-  return newCurrentPage;
-}
-
-function animatePageFlip(setCurrentPage: () => Page, currentPage: Page, isStepForward: boolean): Promise<Page> {
-  return new Promise(resolve => {
-    !isStepForward && (currentPage = setCurrentPage());
-    currentPage.pageElm.setAttribute('data-anim', isStepForward ? 'forward' : 'backward');
-
-    setTimeout(() => {
-      currentPage.pageElm.removeAttribute('data-anim');
-      isStepForward && setCurrentPage();
-      resolve(currentPage);
-    }, 500);
-  })
-}
-
-function updateHashTag(newPageHash: string) {
-  location.hash = newPageHash.substr(1);
-}
-
-// function onMoveBack(pages: Page[], newPageHash: string) {
-//   const currentPage = getCurrentPage(pages);
-//   const currentPageIndex = currentPage.id;
-//   const stepSize = getStepSize(currentPageIndex);
-
-//   if (currentPageIndex - stepSize >= 0) {
-//     animatePageFlip(
-//       setCurrentPage.bind({}, pages, currentPage, currentPageIndex - stepSize),
-//       currentPage,
-//       'backward'
-//     );
-//   }
-// }
-
-// function onMoveForward(pages: Page[]) {
-//   const currentPage = getCurrentPage(pages);
-//   const currentPageIndex = currentPage.id;
-//   const stepSize = getStepSize(currentPageIndex);
-
-//   if (pages.length > currentPageIndex + stepSize) {
-//     animatePageFlip(
-//       setCurrentPage.bind({}, pages, currentPage, currentPageIndex + stepSize),
-//       currentPage,
-//       'forward'
-//     );
-//   }
-// }
-
-function updateNavButton(btnElm: HTMLElement, pageNumber: number) {
-  if (pageNumber < 0) {
-    btnElm.setAttribute('disabled', 'true');
-    return;
-  }
-
-  btnElm.removeAttribute('disabled');
-}
-
-function updatePreviousButton(btnElm: HTMLElement, pages: Page[], pageNumber: number) {
-  updateNavButton(btnElm, pageNumber);
-  (pageNumber >= 0) && btnElm.setAttribute('href', `#${pages[pageNumber].name}`);
-}
-
-function updateNextButton(btnElm: HTMLElement, pages: Page[], pageNumber: number) {
-  if (pageNumber >= pages.length) {
-    btnElm.setAttribute('disabled', 'true');
-    return;
-  }
-
-  btnElm.removeAttribute('disabled');
-  btnElm.setAttribute('href', `#${pages[pageNumber].name}`);
-}
-
-function preventDefaultAndThrottle(func: Function, evt: MouseEvent) {
-  evt.preventDefault();
-  throttle(func.bind(evt.target, evt), 500);
-  return false;
-}
-
-// function getFlipPageRange(start: number, end: number, step: number) {
-//   const len = Math.floor((Math.abs(end - start)) / step) + 1;
-
-//   return Array(len).fill(0).map((_, idx) => start + (idx * step))
-// }
-
-function getPageSetter(pages: Page[], tocBtn: HTMLElement, prevBtn: HTMLElement, nextBtn: HTMLElement,) {
-  prevBtn.addEventListener('click', evt => preventDefaultAndThrottle(updateHashTag.bind({}, prevBtn.getAttribute('href') || '#'), evt));
-  nextBtn.addEventListener('click', evt => preventDefaultAndThrottle(updateHashTag.bind({}, nextBtn.getAttribute('href') || '#'), evt));
-
-  return async (page: Page) => {
-    let currentPage = getCurrentPage(pages);
-    const pageNumber = page.id;
-    const stepSize = getStepSize(pageNumber);
-    const step = pageNumber < currentPage.id ? -stepSize : stepSize;
-
-    if (currentPage.id !== page.id) {
-      await animatePageFlip(() => (currentPage = setCurrentPage(pages, currentPage, pageNumber)), currentPage, step > 0);
+      page = addPage(pageList, bookElm, item.getAttribute('name') || undefined);
+      section = page.pageContentElm;
+      section.appendChild(item);
     }
 
-    updateNavButton(tocBtn, pageNumber - stepSize);
-    updatePreviousButton(prevBtn, pages, pageNumber - stepSize);
-    updateNextButton(nextBtn, pages, pageNumber + stepSize);
+    report(i / itemCount, page);
 
-    location.hash = currentPage.name;
-  }
+    if (++i <= itemCount) {
+      addNextItem(resolve)
+    } else {
+      // book has uneven number of pages, we'll need one more page to pair with the last page
+      if (pageList.length % 2) {
+        addPage(pageList, bookElm);
+      }
+
+      resolve(pageList);
+    }
+  }, 0);
+
+  return new Promise(addNextItem);
 }
 
-export { addPageNumber, getPageSetter }
+export { paginateBook }

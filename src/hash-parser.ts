@@ -1,16 +1,15 @@
-import { Page } from './Page.js';
+import { PageList } from './Page.js';
 
-type PageMap = { [key: string]: Page };
-
-function getHashChangeHandler(pages: Page[], setPage: (page: Page) => void) {
-  const pageMap: PageMap = pages.reduce((map: PageMap, page) => { map[page.name] = page; return map; }, {});
-
-  return () => {
-    const page = pageMap[location.hash.substr(1)] || pages[0];
-    if (page) {
-      setPage(page);
-    }
-  }
+function getCurrentPageId(): string {
+  return location.hash.substr(1) || 'page-1';
 }
 
-export { getHashChangeHandler }
+function getPageByLocation(pages: PageList) {
+  return pages.get(getCurrentPageId()) || pages[0];
+}
+
+function updateLocation(newPageHash: string) {
+  location.hash = newPageHash;
+}
+
+export { getPageByLocation, getCurrentPageId, updateLocation }

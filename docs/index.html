@@ -18,29 +18,19 @@
 </head>
 
 <body>
-  <main class="book">
-    <nav class="book_nav">
-      <a id="btnTOC" href="#table-of-contents" class="book_nav_toc"><span>Table of Contents</span></a>
-      <a id="btnPrev" href="#" class="book_nav_backward">
-        <img src="./assets/arrow.svg" title="Previous" data-svg="embed" width="32" height="7" /><span>Previous</span>
-      </a>
-      <a id="btnNext" href="#" class="book_nav_forward">
-        <img src="./assets/arrow.svg" title="Next" data-svg="embed" width="32" height="7" /><span>Next</span>
-      </a>
-    </nav>
-    <article class="page" data-page="current">
-      <section class="page_content">
-        <h1><span>Shimon</span> <span>Shmuel</span> A memoir</h1>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
-        <h2 not-in-toc="true">Table Of Contents</h2>
-        <nav class="book_toc"></nav>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+  <img id="progressBar" src="./assets/signature.svg" width="160" height="50" data-svg="embed" alt="Loading website" />
+  <div class="bookCover">
+    <main class="book">
+      <nav class="book_nav">
+        <a id="btnTOC" href="#table-of-contents" class="book_nav_toc"><span>Table of Contents</span></a>
+        <a id="btnPrev" href="#previous" class="book_nav_backward"><span>Previous</span></a>
+        <a id="btnNext" href="#next" class="book_nav_forward"><span>Next</span></a>
+      </nav>
+      <article class="page" hidden>
+        <h1 name="shimon-shumuel-a-memoir"><span>Shimon</span> <span>Shmuel</span> A memoir</h1>
+
+        <h2 not-in-toc="true" class="book_toc" name="table-of-contents">Table Of Contents</h2>
+
         <h2>Prologue: Memories</h2>
         <p>The problem with memories is the Gnomes, those who manage our brains, and their cassettes where all the
           impressions are stored for so many years.</p>
@@ -51,10 +41,7 @@
           finds the cassette without a hitch, sometimes he’s off to the loo or went abroad and no one answers.
         <p>Sometimes, he’ll suddenly wake you up in the middle of the night to whisper you the answer. Sometimes he
           doesn’t.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h2>Childhood</h2>
         <p>"My first memories are from the age of four, back in 1924, in my parents’ textile shop in Berlin.</p>
         <p>As a new general store opened in our neighborhood, we packed all of our merchandise in big crates and moved
@@ -70,10 +57,7 @@
           we returned to Berlin two years later, poorer and without the big crates.</p>
         <p>My parents told me that in years to come but there were two incidents I can recall from that time as if
           they happened yesterday:</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>As we lived in a big house, we hired a “<a href="https://en.wikipedia.org/wiki/Goy" target="_blank"
             rel="noreferrer noopener">shiksa</a>” (non-Jew) maid to assist my mom with the house-chores.
         </p>
@@ -82,10 +66,7 @@
           surrounding) we had an underground septic tank, covered with rotten wooden planks.</p>
         <p>I was warned not to step on it but apparently the maid was not. We washed and scrubbed her
           thoroughly but the stench remained for a long time after.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>One evening, a nice “big-measured” lady who worked at a pub across the street ran to us all fussed as she
           witnessed my two-years younger brother, Hillel, who was three years old at the time, playing along the train
           tracks.</p>
@@ -97,10 +78,7 @@
           the nearing locomotive.</p>
         <p>I slipped through the gate’s bars and pulled my brother away.</p>
         <p>As the train passed we waved at the passengers and then went home, cheerful and ready for dinner.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>In 1926 I was enrolled in a gentile (non-Jewish) school near our apartment.</p>
         <p>The apartment was actually a store with rooms and a kitchen in the back that we shared with a kind-hearted
           elderly cobbler and his wife.</p>
@@ -110,10 +88,7 @@
         <p>The plaza was also used as the set-off point for communist riots against the Nazis.</p>
         <p>My parents had a market-stand and they travel from one market to the other to sell their products, mostly to
           other Jews.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>I was a good student and I studied easily. The teachers were cruel and whipped us painfully with a wooden
           stick.</p>
         <p>While the priest taught the gentile students about Jesus, the Jewish students attended the class of a Jew
@@ -122,10 +97,7 @@
         <p>He was a real sadist and he exploited the children and sent them to the bank to execute transactions on his
           behalf.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Our parents returned late every evening.</p>
         <p>After eating lunch, the cobbler’s wife would take us to the synagogue, dressed nicely and we would come back
           to
@@ -136,10 +108,7 @@
           an end.</p>
         <p>In the first years, I didn’t feel any antisemitism.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The year was 1928 and the winter was extremely cold.</p>
         <p>Schools shut as there wasn’t enough coal for heating.</p>
         <p>Hillel and I took a small cart to the train-tracks where coal from Upper Silesia was offloaded.</p>
@@ -153,10 +122,7 @@
         <p>Then Hillel and I would scour the streets, looking for coins that fell in basement-windows shafts and
           occasionally we would find a coin or two to make the search worthwhile but more
           often than not we didn’t look where we’re going and we would bang our heads on open windows and signs.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>As winter passed school reopened.</p>
         <p>A kid in the class didn’t like Jews and harassed me in his tongue.</p>
         <p>A day before summer-break I couldn’t stand it anymore and I punched him in the face.</p>
@@ -171,10 +137,7 @@
           worse. We managed to get an x-ray and saw it was broken.</p>
         <p>I had a cast throughout summer-break and it healed nicely.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We moved to an apartment on the fourth floor of an old building.</p>
         <p>We learned to slide the rail to get down quickly.</p>
         <p>In the new school I met children who were members of “<a href="https://en.wikipedia.org/wiki/Habonim_Dror"
@@ -192,10 +155,7 @@
         <p>At that time I learned to ride the bike and I would cycle to school, although it was tricky to bring them
           up to the fourth floor every day.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The zeitgeist has has changed and there were more riots and street-fights between communists and nazi were
           more
           common.</p>
@@ -207,10 +167,7 @@
         <p>To his dismay, when we got home I tied a big alarm clock on his wrist.</p>
         <p>He was so furious he chased me around the house with a knitting-needle trying to stab me but ended up
           accidentally jamming into the door.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>He and I had many other mischiefs.</p>
         <p>One time we tried our luck using a big sewing machine; being too small to man it alone we took positions - I
           was in charge of the pedals while he directed the needle at the top.</p>
@@ -218,10 +175,7 @@
         <p>Another time, he went to cut his hair at the barber a week after I did, but since we looked alike the barber
           just couldn’t fathom how my hair has grown so long in the short span of a week.</p>
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>In the afternoons my brother and I found a job doing errands and electrical repairs.</p>
         <p>Back then it was a new invention (replacing the <a
             href="https://www.wmf.org/project/gaslight-and-gas-lamps-berlin" target="_blank"
@@ -238,29 +192,20 @@
         <p>During the summer we went to a summer camp outside the city, sponsored by the then-very-active Jewish
           community
           in Berlin.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h2>The Training Farm</h2>
         <p>Between 1930 and 1938 many rich Jews still believed that Nazism is “just a phase” that will soon die out.</p>
         <p>In the meantime we learned in “HaBonim” everything about settling in the holy land and we didn’t doubt that
           one
           day we’ll go there and join the operation.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>In 1933 things got worse- Hitler rose to power and openly declared he’ll get rid of the Jews.</p>
         <p>Migrating to the British-governed Palestine required a visa and those were scarce.</p>
         <p>Visas were allocated for rich people (which cost £1000), for tradesmen (£250) and a special visa for poor
           people who had agricultural training was subsidized by “<a
             href="https://en.wikipedia.org/wiki/Jewish_Agency_for_Israel" target="_blank" rel="noreferrer noopener">The
             Jewish Agency</a>”.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>In 1934, at the age of 13.5 I got an opportunity to join the <a
             href="https://en.wikipedia.org/wiki/Hakhshara" target="_blank" rel="noreferrer noopener">training-farm at
             Gut
@@ -276,10 +221,7 @@
           served the farm.</p>
         <p>In the first couple of months I worked in weeding out the fields and picking worms and slugs from the
           cabbages.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>At the beginning of every month we’ve been given new assignments - to the cowshed, the stable and the farm.
         </p>
         <p>A few “Goyim” (non-Jew men) worked on the farm and I still remember the Werkstatt (workshop) manager - Paul
@@ -291,10 +233,7 @@
           something break</p>
         <p>and something to be manufactured, build a new building, fix the roof or the tractor.</p>
         <p>For most jobs, professionals from the outside were invited (surprisingly they still worked for Jews).</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The farm had a good reputation and they all knew the manager <a
             href="https://de.wikipedia.org/wiki/Martin_Gerson" target="_blank" rel="noreferrer noopener">Gerson</a> by
           his
@@ -313,10 +252,7 @@
           be much more useful for me in Palestine (from what he gathered at his visits there).</p>
         <p>So I conceded and returned to work.</p>
         <p>Needless to say, he was right.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>One time, my friend Konrad and myself arrived late to dinner from loading heavy bags of coal and potatoes and
           announced to the girls we’re hungry and they should prepare our dinner.</p>
         <p>Even though I was as thin as a stick, I had an insatiable appetite and so I made a bet with Konrad that I
@@ -337,28 +273,19 @@
         <p>Years later, I met her at her home in <a href="https://en.wikipedia.org/wiki/HaZore%27a" target="_blank"
             rel="noreferrer noopener">Kibbutz HaZorea</a> and asked her about the incident but she didn’t remember
           anymore.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We usually worked during the morning hours and in the afternoon we had lectures and studies.</p>
         <p>In the evenings we sang and danced and were completely oblivious to the outside world.</p>
         <p>When I visited Berlin I saw the attitude towards the Jews had deteriorated. I saw signs “die juden sind unser
           unglück! Kauft nicht bei Juden!” (“The Jews Are Our Misfortune! Don’t buy from Jews!”).</p>
         <p>I saw Party members singing “When Jewish blood spurts off the knife, things will be twice as good”.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>During those two years I rarely visited my family in Berlin.</p>
         <p>Hillel visited me once, worked shirtless in the orchid hoping to get a tan but ended up sunburning his back.
         </p>
         <p>The next morning the cotton clinged to his raw skin.</p>
         <p>The manager’s wife, a kind-hearted woman, took care of him and he returned home safe and sound.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Many unemployed city-folks joined the party while the village people weren’t sure how to process it so the
           attitude towards us was mostly neutral.</p>
         <p>The two years went by quickly but we still didn’t get the visa for Palestine.</p>
@@ -367,10 +294,7 @@
           our
           own and with no adult supervision.</p>
         <p>On Passover we got a vacation for a week.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>After a day of train-ride we arrived in the late afternoon to the <a
             href="https://en.wikipedia.org/wiki/Giessen" target="_blank" rel="noreferrer noopener">Gießen</a>.</p>
         <p>The bus to the village, which departs once a day, was long gone.</p>
@@ -406,10 +330,7 @@
           parents
           found it difficult to leave their estate behind.</p>
         <p>This was, eventually, confiscated by the Nazis and they paid for their stubbornness with their lives.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We were 26 boys and girls, from 16 years old to 25, all waiting for the visa and eager to immigrate to
           Palestine.</p>
         <p>The area around the farm was very arid with inaccessible plots of poor soil on sloppy mountains.</p>
@@ -439,10 +360,7 @@
         <p>At the end of the work days we would sit down with them for respectful yet vocal conversations. </p>
         <p>They didn’t want the new regime (at least at the start).</p>
         <p>When Nazi official came to count their stocks they hid chickens under the bed, they told us.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The village had a communal oven and once a week bread was baked.</p>
         <p>All the women would gather around the big over and the men would supply the fire-wood.</p>
         <p>Most of the matchmaking happened there.</p>
@@ -450,10 +368,7 @@
           winter.</p>
         <p>In the spring we were busy preparing the vegetable gardens and the fields so there wasn’t much time to think.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <figure>
           <img src="./images/map-bike-cycle.png" width="500" height="334"
             alt="Map of the 500km cycle from Hessen to Berlin" />
@@ -502,10 +417,7 @@
         <p>By nightfall I reach Potsdam.</p>
         <p>I don’t fully remember the last leg of the journey, I must have dozed off while cycling the busy roads but by
           half an hour before midnight I arrived at our home and I put the postcard in the mailbox.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Luckily the gate was open as we lived in the back wind.</p>
         <p>It was a bit challenging to wake them up without scaring them too much but the rejoice was great as they
           didn’t
@@ -530,10 +442,7 @@
         <p>Everyone was happy to see me safe and sound and I won the 10 marks as the postcard arrived in the meantime
           with
           the midnight post’s seal.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Harvest has begun and we were very busy.</p>
         <p>One time an emissary of the Jewish Agency (<a href="https://en.wikipedia.org/wiki/Giora_Yoseftal"
             target="_blank" rel="noreferrer noopener">Giora Yoseftal</a> who later became an Israeli minister) came to
@@ -545,10 +454,7 @@
         <p>In the morning we released him and told him the joke but he didn’t laugh.</p>
         <p>In autumn, we traveled to the county-city Haina to get a passport. The clerk was very nice and wished us good
           luck in the Holyland.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>In the beginning of December 1937 I sold my bike and in exchange I bought a fat goose to bring home as a
           farewell gift.</p>
         <p>The Berlin Jewish community organised gear for our departure - clothes, shoes and raincoats.</p>
@@ -557,10 +463,7 @@
         <p>Maybe they thought I had a pretty face.</p>
         <p>I didn’t have 60 marks and didn’t need so much money anyhow.</p>
         <p>We said our goodbyes without too much drama, not knowing we’ll never meet again.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>A few words about my uncle Paul Rees.</p>
         <p>Paul was my mother’s brother.</p>
         <p>They lived outside the city in a luxurious neighborhood.</p>
@@ -578,10 +481,7 @@
         <p>We never heard from him again.</p>
         <p>I know his only daughter, Erika Rees, arrived in Ein-Vered (in Israel) but we never managed to get in touch
           with her as she vanished as well.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>On December 27, 1937 at 21:00 the train From Anhalter headed on its way to <a
             href="https://en.wikipedia.org/wiki/Trieste" target="_blank" rel="noreferrer noopener">Trieste</a> (Italy),
           and from there we took an Italian boat called Jerusalem.</p>
@@ -591,10 +491,7 @@
           came from other similar farms.</p>
         <p>We found in the carts sweets, chocolate and sweet drinks the Berlin Jewish community prepared for us.</p>
         <p>Many of these we never tasted before, I guess they were Italian sweets.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>When we arrived at Trieste we learned the ship had already left and we needed to wait for another week until
           it
           returned from Haifa.</p>
@@ -608,10 +505,7 @@
           with
           us to the boat.</p>
         <p>Eventually we convinced them to accept the coins.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>On January 5th, 1938 we boarded the ship and left Italy.</p>
         <p>We were asked if we wanted Kosher food as the ship had a Jewish chef, We agreed.</p>
         <p>While touring the ship we met with the fat Jewish chef who welcomed us joyfully with various treats.</p>
@@ -622,10 +516,7 @@
         <p>On the last night we asked for glasses to share our wine with everyone but it was very sour and no one wanted
           to drink it.</p>
         <p>In the morning we woke up to see the promised land on the horizon.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h2>Palestine</h2>
         <figure>
           <img src="./images/map-haifa.png" width="500" height="334" alt="Map of Haifa area" />
@@ -664,10 +555,7 @@
           then rushed back up.</p>
         <p>The train rode through Kibbutz Yagur, Kiryat Haroshet and eventually Kfar Yehoshua - Tel Shamam.</p>
         <p>The train ride took a lot of time and its schedule wasn’t fixed.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>At the station we saw the village folks with the mule ridden wagons, as the mules were rolling in the mud.
         </p>
         <p>A day prior to our arrival was the first rain of the winter.</p>
@@ -677,10 +565,7 @@
           is a normal behaviour.</p>
         <p>I murmured in German that a German horse would never dare to behave this way.</p>
         <p>This was quoted throughout the village a long time after.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>With joint effort we loaded our heavy gear on the wagons and traveled to the village center on a rock-paved
           road that was used to ship the daily milk via the train to <a href="https://en.wikipedia.org/wiki/Tnuva"
             target="_blank" rel="noreferrer noopener">Tnuva</a> at Haifa.</p>
@@ -714,10 +599,7 @@
         <p>I sharpened the blade and calibrated the scythe as he stood awestruck.</p>
         <p>When I started cutting he didn’t say anything and instead just took the pitchfork and started loading the
           wagon.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>On our way back we met the neighbour Glick as the path was shared to save land.</p>
         <p>Dov told him as we passed “The boy can harvest!”.</p>
         <p>After milking and dinner (a two eggs omelette again), we walked to the diary collection point to deliver our
@@ -742,10 +624,7 @@
         <p>We went to the dairy collection point that had a post with the list of all the pairs.</p>
         <p>The list was indeed there but also Dov who’s been looking for me.</p>
         <p>Everyone was happy and we went to sleep.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>By the next day the rain had stopped and it turned out to be a pretty day.</p>
         <p>We weren’t used to having a sunny day in the middle of winter.</p>
         <p>We gathered at the school and Eliyahu showed us the village.</p>
@@ -755,20 +634,14 @@
         <p>The farmers had guard duties every second night for half a night at posts behind the cowsheds.</p>
         <p>The first day was spent assembling the study classes.</p>
         <p>We worked from sunrise, had lunch at 13:00 and studied every day from 14:00 in the afternoon until 18:00.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>I was used to waking up early and taking on various tasks.</p>
         <p>The two eggs omelette became a routine and most of us got zits from excess protein until we got used to it.
         </p>
         <p>When it didn’t rain we hiked in the area (all the way to <a href="https://en.wikipedia.org/wiki/Nahalal"
             target="_blank" rel="noreferrer noopener">Nahalal</a>) and ate grapefruit along with the white skin.</p>
         <p>It was very bitter, until we were taught how to eat it properly.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>I got along with my young family quite well.</p>
         <p>The three year old Shulamit, affectionately called mashinka was very spoiled.</p>
         <p>She didn’t want to eat while they tried to fatten her.</p>
@@ -778,10 +651,7 @@
         <p>I asked her to eat her porridge and she refused. I got annoyed and gave her a good spanking.</p>
         <p>She cried but ate her food out of fear.</p>
         <p>Later she complained to her mother and I was scolded but her behaviour improved.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The shower and the toilets were outside with the pipes running above the ground.</p>
         <p>This meant very hot water in the summer and during the winter, when the water was freezing we would go every
           Sabbath evening to visit Dov’s sister Sarah Liberman.</p>
@@ -810,10 +680,7 @@
         <p>The “heavy” industry was the corn as it required a lot of manual labor.</p>
         <p>We didn’t have pesticides so we had to harvest the fields twice - first at autumn when then weeds began to
           sprout and then in the spring when the soil dried to make sure it was clean from any undesirable plants.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Seeding was artwork.</p>
         <p>Two oxens would carry the <a href="https://en.wikipedia.org/wiki/Stump-jump_plough" target="_blank"
             rel="noreferrer noopener">stump-jump plough</a> that would plough the soil but not turn it.</p>
@@ -837,10 +704,7 @@
           and
           with deep roots.</p>
         <p>In the meantime, you should go work at the orchids.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The orchid was next to the house - mostly plums of various kinds.</p>
         <p>The soil was deep and heavy and rarely required watering.</p>
         <p>During the summer we would quarry limestone from <a
@@ -861,10 +725,7 @@
         <p>As secular as they were, they didn’t slaughter animals on their own.</p>
         <p>The butcher lived next to the dairy station in the middle of the town and also served as the Wedding rabbi.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>In the first summer I was asked if I can make jam from grapes.</p>
         <p>I said “of course”, as I’ve been working at Winkel’s preverves factory and I brought a recipe book with me
           for
@@ -873,10 +734,7 @@
           and
           adding the sugar at the end.</p>
         <p>They argued the jam tasted funny as they never tried a jam that wasn’t burnt…</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We harvested barley (kernels for the cattle) using a <a href="https://en.wikipedia.org/wiki/Reaper-binder"
             target="_blank" rel="noreferrer noopener">reaper-binder</a> - a machine dragged by 3 mules that reaps and
           binds the sheafs.</p>
@@ -913,18 +771,12 @@
           thread but
           collecting the blocks was still difficult as they fell one by one.</p>
         <p>We built a shelf that would “catch” 10 blocks and that made life a bit easier.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Along with technological progress came the air-conditioned tractor that pressed 500kg blocks and a forklift
           to
           load to the wagon and place in the barn.</p>
         <p>In the worst case scenario it required 2 men to operate, while the rest moved to work in construction.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The work pace increased as well as the summer heat.</p>
         <p>At 10am the air was visibly trembling but at 11am we often had a light western breeze to cool the skin.</p>
         <p>The community was based on self-employment and didn’t hire external workers, with the exception of households
@@ -943,10 +795,7 @@
             href="https://en.wikipedia.org/wiki/Hula_Valley" target="_blank" rel="noreferrer noopener">Hula swamp</a>
           (today valley) and that caused a grudge that we decided to travel in the busiest season.</p>
         <p>But we went anyway, and we began talking Hebrew amongst ourselves.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Only married couples were accepted to settle in the village, so one must find himself a wife.</p>
         <p>There weren’t that many women around, least to say that actually one to live in a village.</p>
         <p>Usually the young men would travel to <a href="https://en.wikipedia.org/wiki/Hana_Meisel" target="_blank"
@@ -955,10 +804,7 @@
           questions have the butcher marry them and that’s how the villagers’ marriage looked like.</p>
         <p>At night, as we used the light-projector we would often spot unmarried couples walking along.</p>
         <p>It was quite common and didn’t really bother anyone.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Once a year the “General Assembly” would select the managing committee, although most of the members were
           sleeping out, tired from the day’s work.</p>
         <p>A few other members of the village didn’t have a voting right in the assembly as they weren’t farmers - the
@@ -973,10 +819,7 @@
         <p>The relationships amongst the villagers were cold and it was quite common for folks not to be on talking
           terms
           with their next-door neighbors.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>A maid would often help around the house when the woman gave birth or was sick.</p>
         <p>When my landlady Fruma prepared to have her second born she informed me that as there are only two rooms in
           the
@@ -990,17 +833,11 @@
         <p>I returned to the farm and lay down on the kitchen’s wooden floor.</p>
         <p>Throughout the night I could feel the rats running around me.</p>
         <p>Early in the morning I got up and left to work, figuring it’s probably for the best.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>I knew I’m going to have problems with the gnomes sorting the cassettes in the wrong order and some of the
           stories happened before others.</p>
         <p>It doesn’t really matter much.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Some tasks required more than one man, so “mutual help” order was issued and the villagers were required to
           assist one another, albeit being in inconvenient times.</p>
         <p>In the spring when weed began to sprout, Dov was instructed to assist a fellow-farmer named Broshik.</p>
@@ -1032,10 +869,7 @@
           answered
           “He went to bed saying that `di yeeke hot mikh derhrget! (The Yeke killed me)`”.</p>
         <p>Everyone laughed.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The corn ripened and dried.</p>
         <p>To finish our first year we had to pick and tread the corn.</p>
         <p>It’s a job that can only be done with slaves as no sane person would volunteer to do what we did willingly.
@@ -1054,10 +888,7 @@
           cheer the toiling slaves.</p>
         <p>We moved from one farm to the other and hurried to finish the job before winter.</p>
         <p>We would burn the husks using a “burning harrow” which was very hot as well.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The state in Palestine was also “hot” with Arabs raiding a different village and murdering people.</p>
         <p>However the newspapers called for keeping restraint.</p>
         <p>The British ruled with an iron fist but the situation still got out of control.</p>
@@ -1079,18 +910,12 @@
             rel="noreferrer noopener">Bet-lethem</a> that was under German control and the search ceased.</p>
         <p>The relationship with the British authorities was good - sometimes we paid with bribes of fruit boxes and
           sometimes we thanked the officer.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Most of the children were still young and only few were of our age.</p>
         <p>Our teachers taught us everything about Judaism, the love of the country and the Hebrew language.</p>
         <p>Often we would fall asleep after a hard day of work, they would understand.</p>
         <p>I can’t remember any holidays, except for the celebration of the nursery children.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>In 1938 we still received letters from Germany but in truth we were afraid to write because of the
           censorship.
         </p>
@@ -1100,10 +925,7 @@
         <p>We finished all the work in the field, we made jam and <a href="https://en.wikipedia.org/wiki/Bulgur"
             target="_blank" rel="noreferrer noopener">bulgur</a>.</p>
         <p>We stowed the corncob (used to make fire) and hay in the barn and we were ready for winter!</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>I remember a particularly hot day, everything was dry and I was smearing hot tar over pipes when children
           were
           cleaning dry weed around the building across the street.</p>
@@ -1119,10 +941,7 @@
         <p>Everything burnt down - the library with all its books, the post office with all the letters, the classrooms
           and the nurseries.</p>
         <p>Until the rain came the children learned in the forest.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The farm had several chickens and they had their room in the barn.</p>
         <p>They especially liked to ignore the egg-laying boxes and lay their eggs everywhere and we would end up
           spending
@@ -1139,10 +958,7 @@
           He
           did me a favour and died instantly.</p>
         <p>It was very difficult to explain what had happened.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>During the autumn there wasn’t much work in the field, I built a new and advanced chicken coop.</p>
         <p>A guide from the agency came and injected the idea that chickens must be fed with chopped clover early in the
           morning.</p>
@@ -1150,10 +966,7 @@
         <p>I carried the full bag on my back and the dampness leaked out of the bag and into my boots.</p>
         <p>Those clover fields cause many disputes as the neighbors cows would break the fence to eat the clover.</p>
         <p>No wonder they wouldn’t talk with the neighbors.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>‘38 was coming to its end and we still needed to plough the fields in preparation for the winter, seed the
           wheat using a <a href="https://en.wikipedia.org/wiki/Seed_drill" target="_blank"
             rel="noreferrer noopener">Seeding drill</a>.</p>
@@ -1179,10 +992,7 @@
           worned
           out, and we didn’t have money to replenish them.</p>
         <p>The cobbler gave me custom-made work-boots.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>One might think winter will bring some time to rest but that is a common mistake.</p>
         <p>All the farm chores remain and because of the mud they just become more difficult - harvesting greens for the
           cows or treading the corn into kernels by hand or with a small machine.</p>
@@ -1212,10 +1022,7 @@
             Yaakov</a> for another year of training and getting to know the kibbutz life.</p>
         <p>Later this group founded <a href="https://en.wikipedia.org/wiki/Dovrat" target="_blank"
             rel="noreferrer noopener">kibbutz Dovrat</a>.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>In 1939 we barely had any contact with our parents.</p>
         <p>In Germany they prepared for war and Palestine was hit by a wave of riots and murders.</p>
         <p>In March my brother Hillel arrived in Palestine, as part of the youth movement and was welcomed in <a
@@ -1223,10 +1030,7 @@
             Harod</a>.</p>
         <p>It was only a few train stations away but I didn’t have the money for the ticket.</p>
         <p>However I did manage to visit him once, and he visited me one time as well.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Winter was cold, wet and muddy.</p>
         <p>We used the time to match-make couples who would marry soon and begin their joint life.</p>
         <p>We all came from the same background so these marriages lasted for many years.</p>
@@ -1237,10 +1041,7 @@
         <p>A few remained in Kfar Yehoshua and started to work at the farms for a pay (3 pounds a month, food and board
           for 18 hours a day of work).</p>
         <p>But we were used to working and there wasn’t much to do anyhow.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Going on patrol duty around the village and checking on the different posts, Shoshana was convinced I was
           paying her post an extra attention and one day she took me to meet her uncle in Haifa.</p>
         <p>He announced he agreed to marriage and we decided to marry on April 20, 1940 in two month time.</p>
@@ -1255,10 +1056,7 @@
         <p>I fed the beasts, tied them to the wagon and crawled underneath to nap in the shade.</p>
         <p>When I woke up the sun was already set as I slept the entire day.</p>
         <p>I returned home for the yard’s chores.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h2>War</h2>
         <figure>
           <img src="./images/map-mediterranean.png" width="500" height="334" alt="Map of the Mediterranean sea" />
@@ -1272,10 +1070,7 @@
         </p>
         <p>Every village was required to supply a certain number of abled bodies.</p>
         <p>For obvious reasons, it wasn’t the farmers or their children who were sent, rather than us, the workers.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>In December 1940 I went to <a href="https://en.wikipedia.org/wiki/Tzrifin" target="_blank"
             rel="noreferrer noopener">Tzrifin</a> to pledge my allegiance to the British king for the duration of the
           war.
@@ -1286,10 +1081,7 @@
           the
           long-johns over their trousers and when they couldn’t tell between left and right, they were given a tomato on
           the right and a potato on the left.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Anyone who knew a little bit of English was sent immediately to sergeants’ course.</p>
         <p>We had an Irish sergeant to guide us.</p>
         <p>He was tough and he hated the English more than he hated us.</p>
@@ -1308,10 +1100,7 @@
         </p>
         <p>When we got back we realised our eating-gear was stolen, despite the guard. Every now and then merchants and
           soldiers would try to sell us new eating-gear and told us it was common.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We boarded the train that headed to Egypt.</p>
         <p>At the <a href="https://en.wikipedia.org/wiki/Suez_Canal" target="_blank" rel="noreferrer noopener">Suez
             canal</a> we met a sandstorm. </p>
@@ -1327,10 +1116,7 @@
           who
           pulled out his gun.</p>
         <p>We caught the Egyptian who returned the 30 pennies, plus one more penny as a fine.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Amaria military camp stretched as far as the eye could, with soldiers from all across the British empire and
           a
           lot of Australian Jews.</p>
@@ -1362,10 +1148,7 @@
           he lost his hearing but he wasn’ discharged. One day he appeared with a small stone that fell out of his ear
           and
           after that he got his hearing back, but that wasn’t the end of his story.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>One evening we, all the NCO (Non-commissioned officers), traveled to the soldiers’ club of the Jewish
           Community
           in Alexandria.</p>
@@ -1380,24 +1163,18 @@
           threw
           seamines from high altitude to sink ships.</p>
         <p>However, we slept very well.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
-        On the shore there were two 3-stories high concrete buildings that were previously occupied by the Italian
-        fleet.
-        We took hold of the ground floor as our barracks.
-        The Australians captured the (not so big) city a few days earlier and proceeded towards <a
-          href="https://www.sahistory.org.za/dated-event/ww2-british-8th-army-marches-tripoli" target="_blank"
-          rel="noreferrer noopener">Tripoli</a>.
-        Ships brought gear, ammunition, food and supplies that we offloaded and sent with trucks to the front.
-        There were bombardments every day and every night.
-        One bomb fell on our building and passed through every floor but luckily no one got injured.
-        We worked hard and in the evening we played bingo to candle lights.
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
+        <p>On the shore there were two 3-stories high concrete buildings that were previously occupied by the Italian
+          fleet.</p>
+        <p>We took hold of the ground floor as our barracks.</p>
+        <p>The Australians captured the (not so big) city a few days earlier and proceeded towards <a
+            href="https://www.sahistory.org.za/dated-event/ww2-british-8th-army-marches-tripoli" target="_blank"
+            rel="noreferrer noopener">Tripoli</a>.</p>
+        <p>Ships brought gear, ammunition, food and supplies that we offloaded and sent with trucks to the front.</p>
+        <p>There were bombardments every day and every night.</p>
+        <p>One bomb fell on our building and passed through every floor but luckily no one got injured.</p>
+        <p>We worked hard and in the evening we played bingo to candle lights.</p>
+
         <p>One day when we went to work at the harbor two aeroplanes appeared and the Jewish lieutenant announced -
           these
           are ours!</p>
@@ -1441,16 +1218,10 @@
         <p>When we saw carlights pulling over we got out of the graves, but the soldiers thought we were being raised
           from
           the dead and they ran off.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Here also ends the story of “deaf” Kiri as he saved the life of an Australian soldier during the fire.</p>
         <p>He received a medal and a stipend from the Australian government and we never saw him again.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We worked hard but willingly, supplying provisions to the front and learning a lot about offloading boats.
         </p>
         <p>We worked in a field-bakery in the middle of the desert and baked bread for many soldiers.</p>
@@ -1478,10 +1249,7 @@
         <p>I found one and took a can for myself as well as I was curious about the hidden treasure.</p>
         <p>Upon arriving at camp I opened it and realised it was <a href="https://en.wikipedia.org/wiki/Turnip"
             target="_blank" rel="noreferrer noopener">turnip</a>. I threw it to trash.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Days went by.</p>
         <p>We packed all the gears and got ready to move to a new front.</p>
         <p>We moved all our personal belongings and the battalion equipment to the harbor and were ready to load it to
@@ -1496,10 +1264,7 @@
         <p>One of the soldiers fell between the ship and the boat and by the skin of his teeth we managed to pull him
           out
           a moment before he was crushed to death.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We began our journey to an unknown destiny before sunrise.</p>
         <p>We came across a few sea mines along the way, we tried to shoot them but without success.</p>
         <p>This time we stay on the deck as a precaution.</p>
@@ -1512,10 +1277,7 @@
           and
           it took us many hours but we did so happily.</p>
         <p>After a while the planes were sent to another front and we became obsolete.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We boarded a cargo train to leave and this is the first time I’ve encountered the fifth column - people who
           were planted by the Germans years earlier to sabotage the war effort when time comes.</p>
         <p>First, they got rid of the train drivers. Luckily a few of our men could handle it.</p>
@@ -1544,10 +1306,7 @@
             canal</a> and it
           will take us back home.</p>
         <p>But alas, when we arrived at Argos we saw the city was aflame, works of the fifth column.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We hid until nightfall when trucks arrived to take us to continue our retreat.</p>
         <p>Each platoon got a number and it was all set.</p>
         <p>The first to disappear was our sergeant.</p>
@@ -1569,10 +1328,7 @@
             rel="noreferrer noopener">Kalamata</a> by the south of Greece.</p>
         <p>At this point the Germans started bombing seriously.</p>
         <p>We traveled a lot by foot without a plan of what to do or how to get out of there.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <figure>
           <img src="./images/map-greece.png" width="500" height="334" alt="Map of the Greece" />
           <figcaption>The Greek Campaign</figcaption>
@@ -1588,10 +1344,7 @@
           ships set sail, taking with them our last chance for escape.</p>
         <p>Soldiers who did manage to get to Crete were later captured when the German took the island just the same.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>At 2am they informed all the commanders that as we ran out of ammunition and medical kits, we shall surrender
           to the Germans by 5 in morning.</p>
         <p>Whoever wishes to flee may do so, and those who choose to stay should shave and clean themselves as they are
@@ -1604,11 +1357,13 @@
           it by the end of the war.</p>
         <p>Years later, when I did manage to find my back there, the tree was already gone and instead a big highway
           covered what might have been my fortune.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h2>Prisoner of War</h2>
+        <figure>
+          <img src="./images/stalag-viii-b-diagram.png" width="500" height="334"
+            alt="Diagram of Stalag VIII-B Lamsdorf" />
+          <figcaption>POW Camp Stalag VIII-B Lamsdorf</figcaption>
+        </figure>
         <p>At 5am the Germans arrived on motorcycles and gathered all the soldiers in Kalamata (which had a lot of
           squares
           that were convenient for this purpose.</p>
@@ -1640,10 +1395,7 @@
           to Yugoslavia. We traveled for days, 50 people in a cart meant for cattle.</p>
         <p>Eventually we arrived at <a href="https://en.wikipedia.org/wiki/Stalag_VIII-B" target="_blank"
             rel="noreferrer noopener">Stalag VIII-B Lamsdorf</a> at the east of Germany.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The German HQ was at the entrance to the camp and that’s where they inspected our belongings.</p>
         <p>We quickly learned how to smuggle goods, such as radio parts so we could listen to the BBC and learn what is
           happening in the world.</p>
@@ -1674,10 +1426,7 @@
         <p>Internally, the camp was managed by the British, as prisoners of other nationalities were transferred to
           other
           camps.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The German soldiers- the <a href="https://en.wikipedia.org/wiki/Wehrmacht" target="_blank"
             rel="noreferrer noopener">Wehrmacht</a>, As oppose to the Nazi party’s SS, didn’t meddle with out day-to-day
           life and left it to the British NCO.</p>
@@ -1691,10 +1440,7 @@
           before completion and filled with sewer.</p>
         <p>Perhaps the Germans knew about them but did nothing as it kept the prisoners occupied.</p>
         <p>The punishment for escape, which was the duty of every soldier, was a few days in isolation.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Twice a day we had to stand in rows of six for counting, as a German officer would count the rows out loud.
         </p>
         <p>One of the prisoners would do an excellent impersonation of dog barking and would constantly throw him off
@@ -1704,10 +1450,7 @@
           actually escaped (using the Red Cross visiting van) but by this point, the German’s countings were so
           unreliable
           they didn’t notice it.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The British soldiers sure loved their tea, and they made great efforts to get it.</p>
         <p>They used the 100 litres tank from the showers and either burned old shoes heating or would use electricity
           to
@@ -1715,10 +1458,7 @@
         <p>Of course that caused the fuse to switch, so they had a soldier standing by the fusebox in charge to switch
           it
           back on as soon as possible and before the German would notice.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>On good days the Swiss Red Cross delivered packages with boxes of food.</p>
         <p>However the boxes were poked as not to be used for an escape.</p>
         <p>The packages were tied with a string that we used for multiple purposes and we also learned how to use the
@@ -1734,10 +1474,7 @@
         <p>I use the cigarettes to buy tweezers and a small screwdriver that I could use to fix watches.</p>
         <p>Most of the time the problem was dust so merely taking the watch to pieces, cleaning it with a little oil and
           putting it back together got a reputation earned me with cigarettes to buy chocolate and tea.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>A short while after we arrived, a group of 500 Jewish prisoners (out of the 1500 who were captured in
           Kalamata)
           were sent to a labour camp at Ehrenforst (today <a
@@ -1756,10 +1493,7 @@
         <p>One cabin belonged to a German major named Hauptmann and his soldiers (the guard).</p>
         <p>A Jewish sergeant named Chaim Globinsky was our liaison and he negotiated with the German in Yiddish to
           everyone’s satisfaction.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Every room had 25 people in bunk beds. The shower and the outhouse were in a separate cabin.</p>
         <p>The Germans normally didn’t go inside the camp.</p>
         <p>We worked every day from 7am until 4pm. Upon our return, we received a warm meal, cooked by a German (outside
@@ -1776,10 +1510,7 @@
         <p>He announced - “Even our soldiers at the front don’t get such great food!” but Globinsky answered “This isn’t
           the cauldron but a pot hanging inside of it that produces the good food”.</p>
         <p>They checked and another soldier was sent to the Russian front.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>After this incident we were served excellent food.</p>
         <p>The work progressed well and we were on good terms with the formen who were <a
             href="https://en.wikipedia.org/wiki/Volksdeutsche" target="_blank"
@@ -1793,10 +1524,7 @@
           dried and sealed with a tape and sold it as new to a German farmer who was quite happy with it (apparently it
           still had enough taste in it) but wondered out loud why there’s a picture of a cow on the box.</p>
         <p>I later bought a razor blade from the German that I kept to this day.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Every day we smuggled to camp inside our coat a 4km lump of coal so we didn’t lack fuel for heating.Winter
           came
           and we had a nice stack of coal to keep ourselves warm.</p>
@@ -1808,10 +1536,7 @@
         <p>The camp’s wire fence was one meter away from the window and one of the security guards saw us.</p>
         <p>He sent Globinsky to ask- “if you’re naked because you’re roasting then why did you open the window?” During
           the night the heater cooled down and we managed to get some sleep.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The soil froze and it was no longer possible to move it.</p>
         <p>In preparation for the spring, we made coating material to be used at the bottom of the canal.</p>
         <p>A locomotive with 10 v-shaped carts of 2sq.m brought the material that froze on the way and got stuck to the
@@ -1823,10 +1548,7 @@
           the locomotives and charcoal on top.</p>
         <p>The temperature was between -15c to -20c and without wind it felt cold but wasn’t horrible.</p>
         <p>When the wind would grow stronger the work would end and we returned to camp as it felt like -30c.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>One day the last cart flipped over and all but the locomotive and the first cart flipped with it.</p>
         <p>The formen yelled “Sabotage! Quickly! Lift the carts back”. Easy to say but impossible to do.</p>
         <p>They brought the chief foremen and a group of Polish workers but they couldn’t do anything and they left.</p>
@@ -1840,10 +1562,7 @@
         <p>Rolling the carts downwards towards the new tracks was much easier and soon enough we returned to our camp
           for
           some warmth.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Due to the cold the project was put to a halt and we were sent to work in the construction of a factory that
           was an hour walk away on an ice-frozen road.</p>
         <p>The factory turned coal into 22 different products - benzol (oil), margarine, clothes and more in a process
@@ -1857,10 +1576,7 @@
             rel="noreferrer noopener">commandant</a> asked who we are and the soldiers answered - British-Jewish
           prisoners.</p>
         <p>He sent us to work with the German Jews who were guarded by the Nazi-party members SS soldiers.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The entire building was built using bricks and our job was to load the bags of bricks up to the fourth floor.
         </p>
         <p>The German Jews were all young men in their twenties physically depleted and had plenty of bickering amongst
@@ -1873,10 +1589,7 @@
           from
           the SS soldiers’ hands and threw them to the river.</p>
         <p>A big commotion ensued and eventually we were transferred elsewhere.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Our new task was to unload bricks from train carts. We received working gloves as it was very cold (-30c) and
           the sharp bricks would peel the skin of our hands.</p>
         <p>Our supervisor, a German elder, wrote down the list of workers I handed him, so he would charge 50 <a
@@ -1896,10 +1609,7 @@
         <p>Alas, after the factory was completed and we were transferred to our next assignment, the American bombed it
           to
           rubles.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We were transferred to the paper mill in <a href="https://en.wikipedia.org/wiki/Krapkowice" target="_blank"
             rel="noreferrer noopener">Krappitz</a>.</p>
         <p>Two paper mills stood next to one another, both belonged to <a
@@ -1907,10 +1617,7 @@
             rel="noreferrer noopener">Reichswerke Hermann Göring</a> (conglemorate owned by the Nazi party)</p>
         <p>They would make wet cellulose for newspaper productions, usually from tree pulp and office paper of better
           quality (from rags).</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>After a day’s journey in a cattle-train we, 50 prisoners, arrived at 2pm to <a
             href="https://en.wikipedia.org/wiki/Blechhammer" target="_blank" rel="noreferrer noopener">Blechhammer</a>,
           4km away from the mills at what was previously a dance-hall of a restaurant.</p>
@@ -1932,10 +1639,7 @@
           very
           dirty.</p>
         <p>But at least there we didn’t have any interaction with the Germans.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>My job was to wake up at 5 and get everyone ready for inspection outside the inn.</p>
         <p>We would then march for 10 minutes to where we would hitch the train to take us to the factory.</p>
         <p>Sometime when we got punished for whatever reason, we had to walk our way back.</p>
@@ -1973,10 +1677,7 @@
         <p>Every day we would hear in big speakers the latest news about German advancement in Russia and the common
           belief that by next Christmas this will all be over and we would go back home.</p>
         <p>We were sure of it.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>One day, new prisoners arrived - French Canadians who tried to invade <a
             href="https://en.wikipedia.org/wiki/Dieppe_Raid" target="_blank" rel="noreferrer noopener">Dieppe</a>
           (Normandy, France).</p>
@@ -2008,10 +1709,7 @@
         <p>When I was allowed to come back inside my hands were bloodless blue and frozen.</p>
         <p>After a long massage the blood flowed again and they were saved.</p>
         <p>After a month they collected the chains and things went back to normal.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>One of my friends attended the hospital and told me he was stationed in <a
             href="https://de.wikipedia.org/wiki/S%C3%BCddeutschland" target="_blank"
             rel="noreferrer noopener">Süddeutschland</a> near the border to Slovakia, at a sand-to-glass factory.</p>
@@ -2026,19 +1724,13 @@
           the forest to collect mushrooms.</p>
         <p>Our dorms even had indoor showers and toilets.</p>
         <p>Occasionally, I worked to harvest at the nearby farmers in exchange for a proper meal with meat.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>This lasted a few months.</p>
         <p>The factory was privately owned and we were treated well.</p>
         <p>The German sergeant would go with trips with us in the nearby area.</p>
         <p>Our meals were made by a Czech woman aided by her fifteen year old daughter but when rumors spread of her
           fraternizing with one of the prisoners, it all broke down and we were sent back to camp.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The year was 1944 and the allied forces were advancing in all fronts and again Christmas crept closer with
           its
           annual promise for us to go home.</p>
@@ -2048,10 +1740,7 @@
           of a Zionist and declined (in hindsight I admit it was a mistake), claiming that I will be persecuted for
           being
           a Jew anywhere I would go except for Israel.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Our barracks had many windows and each window had a table for 10 prisoners, 5 on each side.</p>
         <p>At noon each table got a shoe-box-sized carton that the kitchen would fill with boiled unpeeled potato for
           each
@@ -2059,10 +1748,7 @@
             href="https://en.wikipedia.org/wiki/Margarine" target="_blank" rel="noreferrer noopener">margarine</a> (one
           block for 20 people).</p>
         <p>Sometimes we got soup from potato peels and pickles, with an occasional piece of meat.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Next to each window we built a small oven with a chimney made from tin cans that we used to boil tea.</p>
         <p>Every day a group went to the forest to collect wood for our ovens, but when the Russian front drew near it
           became forbidden and we no longer had wood to make tea.</p>
@@ -2072,10 +1758,7 @@
         <p>But we got caught by the regimental sergeant major who didn’t want to get in trouble with the Germans and so
           we
           were sentenced to 28 days in confinement.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Food was scarce there so we were first sent to be fattened a bit.</p>
         <p>The dungeon was a concrete structure with small cells and a bunk.</p>
         <p>As the cells were in high demand, we had to share it with a cellmate.</p>
@@ -2113,10 +1796,7 @@
         <p>A friend caught a chicken, killed it, buried the feathers under a pile of manure and cooked a soup in a metal
           helmet.</p>
         <p>That helped me back to my feet.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>After a few days we returned back to the Stalag as the Russians had passed and continued their march towards
           Berlin.</p>
         <p>The Camp was mostly deserted with only a handful of Germans, no electricity, now water and everything covered
@@ -2134,10 +1814,7 @@
             target="_blank" rel="noreferrer noopener">Bad Kissingen</a> and from there we marched to <a
             href="https://en.wikipedia.org/wiki/Hammelburg" target="_blank" rel="noreferrer noopener">Hammelburg</a> - a
           castle on a mountain that had barracks with American prisoners.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Our stay was short, we got food and by the end we burned the barracks’ wooden floor for heat.</p>
         <p>One morning a siren informed us we’re leaving again as <a
             href="https://en.wikipedia.org/wiki/George_S._Patton" target="_blank" rel="noreferrer noopener">general
@@ -2184,10 +1861,7 @@
         <p>The village elders decided to prepare wagons and drives to the next village and off their hands while leading
           us towards the town.</p>
         <p>The two German soldiers and their sergeant walked along the wagons or sat with us.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>At the town they settled us in a school’s basement that served as a bomb shelter, along with the villagers
           who
           held no grudge towards us.</p>
@@ -2219,10 +1893,7 @@
         <p>Our numbers growing up to a 1000 men and commanded by a German lieutenant major who announced one day we’re
           going to stay there, at <a href="https://en.wikipedia.org/wiki/Hilgertshausen-Tandern" target="_blank"
             rel="noreferrer noopener">Hilgertshausen</a>.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We went into a barn to rest on the hay.</p>
         <p>I had a cold after walking all day in the rain and my coat was wet and heavy.</p>
         <p>I didn’t feel well.</p>
@@ -2232,10 +1903,7 @@
         <p>From the beginning of the week we saw SS men fleeing, leaving their gears behind and the residents locking
           themselves indoors as the prisoners began dismantling the village.</p>
         <p>The australian killed chickens using their boomerangs and when the tanks arrived we were in a good mood.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The next day the German soldiers surrendered their weapons and became our prisoners.</p>
         <p>We led them to the train on their way to a prisoners camp and then stayed standing on the road, not sure what
           to do next.</p>
@@ -2274,10 +1942,7 @@
         <p>The sergeant-major has already arranged everything on our behalf at the base so our registration was quick,
           we
           received some money to spend the night and the next day we flew with bombers to Oxford.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We were welcomed at a big hangar where we powdered with DDT against lice.</p>
         <p>Women organisations and the Red Cross took care of us.</p>
         <p>They meant well but we were tired and wanted to rest.</p>
@@ -2295,10 +1960,7 @@
         <p>After a couple of hours we realised we got lost and didn’t have a clue where we were.</p>
         <p>By midnight we arrived at a military base filled with Indians.</p>
         <p>The officer on duty welcomed us with tea and explained about the area to us.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We arrived at a multinational registration camp by early morning.</p>
         <p>Everyone was still asleep but the chief cook was Jewish so he gave us special treatment.</p>
         <p>The British army believed captivity can make one “a little funny in the head”, so we had special teams with
@@ -2312,10 +1974,7 @@
         <p>We spent the entire day eating and watching movies.</p>
         <p>We had plenty of drinks, chocolate and shaving machines and brushes (I had 7).</p>
         <p>It felt like paradise.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>After two days I received a list of all the Israelis along with train tickets, to lead them to <a
             href="https://en.wikipedia.org/wiki/Newcastle-under-Lyme" target="_blank"
             rel="noreferrer noopener">Newcastle-under-Lyme</a>.</p>
@@ -2340,19 +1999,13 @@
           portions
           otherwise you’ll get sick”.</p>
         <p>He was very kind to us.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>There was one problem: the girls!</p>
         <p>There was a big shortage with young men as the Americans already left, the war in Japan continued and the
           English boys were in the far east, So be became the girls’ target.</p>
         <p>I bought myself a wedding ring and that helped a little.</p>
         <p>Later I gave the ring to Hava, Hillel’s wife at their wedding.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Any one who had friends and relatives in the UK got a vacation to visit them and those who were alone were
           invited by the Jewish communities to spend time with guest families.</p>
         <p>We registered and traveled to Manchester.</p>
@@ -2380,10 +2033,7 @@
         <p>It all turned out alright.</p>
         <p>They were very courteous and we spent two weeks with them in the city and the area.</p>
         <p>We kept in touch years later as well.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>When I returned to camp I had a letter waiting for me from a young lady named Alice from London who saw my
           name
           in the list of the recruits returning from London and asked if indeed I was Shoshana’s husband as she was her
@@ -2404,10 +2054,7 @@
           handful into my pockets.</p>
         <p>Alice was very embarrassed.</p>
         <p>Years later, when she visited us in Israel, I mentioned this but she couldn’t remember.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>After gaining some pounds in England we began our journey back home.</p>
         <p>We boarded a boat and unlike the previous time we ate on the deck, this time we got a place in the queue to
           the
@@ -2420,10 +2067,7 @@
         </p>
         <p>But as this was a “white-only” pool they quickly replaced the water and forbade the "natives" from swimming.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The next day we traveled all day until we reached a raising-bridge over the Suez Canal that got hit by a
           passing boat.</p>
         <p>We waited all night for it to be repaired and continued our journey the next day.</p>
@@ -2433,10 +2077,7 @@
             rel="noreferrer noopener">Sarafand</a>.
         </p>
         <p>After many speeches we received 72 days of paid vacation and I took the bus to Haifa.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h2>Israel</h2>
         <p>And what next?</p>
         <p>Even though I was married, I didn’t have a wife: She joined the British army as well and now was</p>
@@ -2457,10 +2098,7 @@
           houses.
         </p>
         <p>At the evening assembly they asked to know how did I, as a Jew, managed to survive the Nazi regime.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>After a few days Shoshana returned from Italy, making her long journey via Egypt.</p>
         <p>She also received her paid leave. We met at the Haifa’s military base gates, we kissed and continued our
           lives
@@ -2483,10 +2121,7 @@
           received
           the wounded and wanted to take care of us as well but we just wanted to leave as soon as possible and we said
           we’re ok.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We got a ride to <a href="https://en.wikipedia.org/wiki/Zir'in" target="_blank"
             rel="noreferrer noopener">Zir’in</a> (today Kibbutz Izrael) where most of our friends from the Youth
           movement
@@ -2508,10 +2143,7 @@
         <p>We wanted to settle in one of the villages but it wasn’t easy.</p>
         <p>We could also join the Kibbutzim as they were looking for cheap labor but we wanted to be independent.</p>
         <p>But first we need a room to call home.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We traveled to Kfar Yehoshua as we didn’t know anywhere else, and got a place to stay - in a barn 4x4m in
           size
           divided with a curtain for us and another worker.</p>
@@ -2523,10 +2155,7 @@
         <p>I was assigned, along with the rest of the former PoW, as a military police. It was a convenient job and it
           was
           interesting.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>One day a brigade soldier showed and announced he was a deserter (missing from the army for 21 days) as he
           just
           returned from Europe where he’s been searching for his parents who disappeared during the holocaust.</p>
@@ -2554,10 +2183,7 @@
         <p>We quickly wrote down the details and fled. Later I reported the accident and that was the end of it.</p>
         <p>After 28 days We returned to retrieve the chap and we asked him what it was like.</p>
         <p>He answered that it would be better if he'd simply forget this horrible short time in his life.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Meanwhile, the situation in the country became explosives as both the <a
             href="https://en.wikipedia.org/wiki/Haganah" target="_blank" rel="noreferrer noopener">Haganah</a> and the
           <a href="https://en.wikipedia.org/wiki/Irgun" target="_blank" rel="noreferrer noopener">Irgun</a> acted
@@ -2594,40 +2220,38 @@
         <p>We were recalled back to Serefand where we got civilian clothes, a suit with a tie, shoes, skirts, the final
           paycheck and a ride home.</p>
         <p>Thus concluded my 5 years of military service.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
-        I returned home and tried to work but couldn’t. I was fit and healthy but the mental change took me some time.
-        We spent the time checking for places to settle in, but we couldn’t find anything we liked, until we reached <a
-          href="https://en.wikipedia.org/wiki/Yokneam_Moshava" target="_blank" rel="noreferrer noopener">Yokneam</a>
-        which
-        we once visited as part of the youth movement.
-        “The Valley” (HaGay) cooperative farm was initially founded by Dutch zionist capitalists with workers who worked
-        on the farm and stole anything that was glued shut.
-        In the meantime the farm bankrupted and a few buildings remained.
-        It was a beautiful place, albeit underdeveloped: to the foot of the mountain (Carmel) and viewing the valley
-        (Izrael) that we knew.
-        50 sq.mr plot of land - 5 for the farm, additional 5 in the mountain and the rest in the valley.
-        There were only a few settlers and the rest was run by <a href="https://en.wikipedia.org/wiki/Bedouin"
-          target="_blank" rel="noreferrer noopener">Bedouins</a>, who herded their cattle on land purchased by <a
-          href="https://en.wikipedia.org/wiki/Yehoshua_Hankin" target="_blank" rel="noreferrer noopener">Yoshoua
-          Hankin</a> from rich Arabs in Lebanon and Syria and haven’t been evicted yet, and Kibbutz HaZorea who tried to
-        drive the bedouins off the land.
-        <a href="https://en.wikipedia.org/wiki/Rassco_(company)" target="_blank" rel="noreferrer noopener">Rassco</a>
-        managed the plot allocation and were the contractors for the houses as well.
-        We decided to try our luck and gave our money to Rassco and the village council in exchange for a lottery to win
-        a
-        plot on a thorn-filled abandoned hill with a challenging ascent and a lot of rocks.
-        The constructions for the house began but everything was done manually - from digging the foundations to making
-        the concrete blocks on site.
-        We lived at a friend's house, which was in a more advanced stage of construction, but since there was no work in
-        Yokneam for everyone I bought a horse named Yoni and I rode every day to Kfar Yehoshua to work in building barns
-        chicken coops and I earned well.
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
+        <p>I returned home and tried to work but couldn’t. I was fit and healthy but the mental change took me some
+          time.
+        </p>
+        <p>We spent the time checking for places to settle in, but we couldn’t find anything we liked, until we reached
+          <a href="https://en.wikipedia.org/wiki/Yokneam_Moshava" target="_blank" rel="noreferrer noopener">Yokneam</a>
+          which we once visited as part of the youth movement.
+        </p>
+        <p>“The Valley” (HaGay) cooperative farm was initially founded by Dutch zionist capitalists with workers who
+          worked on the farm and stole anything that was glued shut.</p>
+        <p>In the meantime the farm bankrupted and a few buildings remained.</p>
+        <p>It was a beautiful place, albeit underdeveloped: to the foot of the mountain (Carmel) and viewing the valley
+          (Izrael) that we knew.</p>
+        <p>50 sq.mr plot of land - 5 for the farm, additional 5 in the mountain and the rest in the valley.</p>
+        <p>There were only a few settlers and the rest was run by <a href="https://en.wikipedia.org/wiki/Bedouin"
+            target="_blank" rel="noreferrer noopener">Bedouins</a>, who herded their cattle on land purchased by <a
+            href="https://en.wikipedia.org/wiki/Yehoshua_Hankin" target="_blank" rel="noreferrer noopener">Yoshoua
+            Hankin</a> from rich Arabs in Lebanon and Syria and haven’t been evicted yet, and Kibbutz HaZorea who tried
+          to
+          drive the bedouins off the land.</p>
+        <p><a href="https://en.wikipedia.org/wiki/Rassco_(company)" target="_blank" rel="noreferrer noopener">Rassco</a>
+          managed the plot allocation and were the contractors for the houses as well.</p>
+        <p>We decided to try our luck and gave our money to Rassco and the village council in exchange for a lottery to
+          win a plot on a thorn-filled abandoned hill with a challenging ascent and a lot of rocks.</p>
+        <p>The constructions for the house began but everything was done manually - from digging the foundations to
+          making
+          the concrete blocks on site.</p>
+        <p>We lived at a friend's house, which was in a more advanced stage of construction, but since there was no work
+          in</p>
+        <p>Yokneam for everyone I bought a horse named Yoni and I rode every day to Kfar Yehoshua to work in building
+          barns chicken coops and I earned well.</p>
+
         <p>The first task was to make children, because otherwise what this all has been about.</p>
         <p>The second task was to clean the plot from all the thorns.</p>
         <p>There were also plenty of snakes and scorpions and every day we killed a few.</p>
@@ -2635,10 +2259,7 @@
           an
           aggravation with Rassco.</p>
         <p>The House was very modest - 34 sq.m.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Twice a week I took guard duties as we were harassed by Arabs all the time.</p>
         <p>We took a 150 pounds load and I built a chicken coop and a chick-run.</p>
         <p>By the end of 1946 we moved to our own home but until 1948 we didn’t have electricity.</p>
@@ -2657,10 +2278,7 @@
         <p>The drylands plots weren’t divided yet so we worked on them together.</p>
         <p>Every morning the wagons would gather up at the town’s center, next to Kremer’s bakery and shop, loaded with
           seeds and pulling the seed dispensers and we would leave for the fields.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Our morale was high. We didn’t hear much of the news as there was no electricity and therefore no radio as
           well.</p>
         <p>We only learned through the newspaper which settlement was raided (by Arabs) during the night.</p>
@@ -2671,10 +2289,7 @@
         <p>In the first building I constructed from wood and tin plates we housed the chickens and the hens in one part
           and the other was for the horse, its hay and stack and toilet.</p>
         <p>It was nice to sit there as a ginger cat that adopted us would always come to sit on one’s lap.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We were constantly harassed by viper snakes as we invaded their territory.</p>
         <p>We’ve been told about several children from the village who died as they couldn’t reach the <a
             href="https://en.wikipedia.org/wiki/HaEmek_Medical_Center" target="_blank"
@@ -2693,10 +2308,7 @@
           “Alma” (Damsel).</p>
         <p>One day a herd of sheep invaded our plot. She woke up, charged and chased the sheep away.</p>
         <p>She and her offsprings served us for many years.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The rains started.</p>
         <p>Back then rain was “real rain”. It rains for days and nights making it impossible to leave the house.</p>
         <p>We would fold a bag over our head to run our chores.</p>
@@ -2705,10 +2317,7 @@
           off.
         </p>
         <p>I built a sled and we slid in the mud.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We received a little budget and I started building a stable, this time with full blocks there were made
           without
           cement - a work of art.</p>
@@ -2724,19 +2333,13 @@
           village, which provided additional income.</p>
         <p>Our children grew on goats’ milk and cheese and it seems they’ve gotten something from the male-goat as they
           all grew up to be just as stubborn.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>In February 1947 Roni was born.</p>
         <p>We looked for someone to perform the circumcision and ended up with the doctor who served us at his home.</p>
         <p>We welcomed our guests to our home on the hill, serving them tea with 14 thin glasses we bought for the
           occasion.</p>
         <p>Over time Roni ended up breaking all of them.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>In march, we were getting ready for the <a href="https://en.wikipedia.org/wiki/Purim" target="_blank"
             rel="noreferrer noopener">Purim</a> ball in the town-hall and we wanted to dress up as dark-skinned folks.
         </p>
@@ -2750,10 +2353,7 @@
           in soot.</p>
         <p>The water I heated outside wasn't warm yet and when his mother breastfed him, he suckled a bit off the soot
           which affected him to this day.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Spring came and we decided to cultivate our rock-filled plot on the hill.</p>
         <p>One Friday morning I took a ride with HaZorea’s milk-car (that also took ours) to the <a
             href="https://en.wikipedia.org/wiki/Kfar_HaNoar_HaDati" target="_blank" rel="noreferrer noopener">Youth farm
@@ -2768,10 +2368,7 @@
         <p>Nothing helped - we loaded the bag on top of the driver’s cabin and me on top of that.</p>
         <p>We later spent the entire night planting the cauliflower to the moonlight, she grew beautifully and we
           succeeded in the mission.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Times were hard and every day the Haganah fought the British, the Arabs fought us and the Irgun blew up the
           building, amongst them the <a href="https://en.wikipedia.org/wiki/King_David_Hotel_bombing" target="_blank"
             rel="noreferrer noopener">King David Hotel</a>.</p>
@@ -2818,10 +2415,7 @@
         <p>On top of that, another neighbor was supposed to come wash the diapers but couldn’t make it so I heated the
           water outside when the gunshots quieted down and Shoshana washed them.</p>
         <p>That night I had guard duty again.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>It was very difficult to build a farm without money, loans and budgets were very scarce. We were fortunate to
           be able to do many things ourselves.</p>
         <p>The British made life even more difficult - one day they’re in our favour and the other they’re against us.
@@ -2835,18 +2429,12 @@
           near the bakery.</p>
         <p>This time the British waited for the bus and commanded the passengers to get off and dismantle it.</p>
         <p>Along the way they broke his glass.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We worked during the day and guarded during the night, not stopping for a moment.</p>
         <p>Many new immigrants arrived and we built a transit camp from tin-plates alongside the road.</p>
         <p>As the farm itself didn’t require too much work (and didn’t provide much income either), I worked in
           construction and that helped us sustain ourselves and buy materials to keep building the farm.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>A truce was reached with the aid of the UN and the British left.</p>
         <p>With the approval of the UN, the British divided the desert-land into two parts and we got the smaller part,
           filled with swamps.</p>
@@ -2863,10 +2451,7 @@
         <p>After many casualties the Arabs asked the UN help to reach a cease-fire and the <a
             href="https://en.wikipedia.org/wiki/1947%E2%80%931949_Palestine_war" target="_blank"
             rel="noreferrer noopener">war of independence</a> ended.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Yokneam has grown and we developed a cultural life with celebrations in the townhall and festivities in the
           fields.</p>
         <p>Every Saturday morning we would take the children for a walk in the mountains or we traveled through the
@@ -2884,10 +2469,7 @@
           more difficult the engineer told me I should move to the Negev and get electricity in the next decade, I
           eventually yielded.</p>
         <p>Electricity made life much easier.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>We fought the Arabs but also the soil.</p>
         <p>When we got our plot in Yokneam, there were many fundamental things we didn’t know and no one told us.</p>
         <p>The land between the mountains and the <a href="https://en.wikipedia.org/wiki/Kishon_River" target="_blank"
@@ -2914,10 +2496,7 @@
           luxurious and not whine.</p>
         <p>We were orphans but we completed one another for almost 60 years.</p>
         <p>We made all the decisions together - regarding both the farm and the children.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>During the 50s there was massive immigration from Africa (Yemen, Marrocco, Aljir, Tunisia), heavy recession,
           food ration, scarcity and unemployment but we continued building new villages and towns.</p>
         <p>The spirit was high and everyone wanted to be involved.</p>
@@ -2936,10 +2515,7 @@
           task
           as many of the plots were very wet and nobody wanted them.</p>
         <p>The produce increased and we bought a truck, no longer needing to rely on HaZorea’s truck.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The Relationships in Yokneam were good and we would meet with friends on Saturday evenings.</p>
         <p>We celebrated all the holidays (in the town hall that was originally built as a garage with permission from
           the
@@ -2964,10 +2540,7 @@
           or
           a truck.</p>
         <p>Everyone was willing to help.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The situation in Israel was always difficult and looking for funds, the young government asked for a “village
           ransom” to which we contributed the jewels to support the finance of the army.</p>
         <p>The biggest difficulty was to enlist to a 30 days army reserve duty and leave the wife with the little
@@ -2988,10 +2561,7 @@
           and slept well.</p>
         <p>I sometimes wonder how we managed to do everything and still have time to read books by the kerosene light.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>One time I returned from the field at midday to check on the chickens only to realise that one of the hens
           had
           <a href="https://vetericyn.com/blog/what-is-prolapse-vent-in-chickens" target="_blank"
@@ -3006,10 +2576,7 @@
           and mixed it with 6 eggs.</p>
         <p>I sat down to eat this big “chicken-burger” for lunch and then hurried back to work.</p>
         <p>As I said, my appetite was always insatiable.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>At first we had a few goats that supply milk and cheese for the household but the herd grew quickly.</p>
         <p>A state-sponsored guide visited us several times and helped us improve the goat house and the goats’ produce.
         </p>
@@ -3031,10 +2598,7 @@
         <p>A state-sponsored vet came to visit and saw the scar and after hearing the story confessed that he would
           never
           have dared to do it.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>As time went by we raised calves who mature to become cows.</p>
         <p>The cowshed was the second brick building I built myself.</p>
         <p>The cows ate large quantities so we also need a barn to store the hay for the winter, which I also built.</p>
@@ -3073,10 +2637,7 @@
           ear deteriorated and I used a hearing aid.</p>
         <p>Many years later, the doctor offered to examine the stitched ear and realised that the twisted canal can be
           easily fixed with modern technology, and happily my hearing was restored.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h2>Epilogue: Eulogy</h2>
         <p>Shimon Shmuel was born to a small jewish family who traded in textile in Berlin, 1920.</p>
         <p>He was a good student and knew to recite poems in German and French which he remembered to his last days and
@@ -3099,10 +2660,7 @@
           a
           day.</p>
         <p>He eventually won the bet and made one of his rarest visits to this family.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>On December 1937 Shimon sold his bicycle and brought his parents a fat duck as good-bye present before going
           to
           Israel.</p>
@@ -3127,10 +2685,7 @@
           spite the happiness was great, the party ended rather early as the friends went to sleep in preparation for
           the
           next day's chores.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>Not long after the second world war began.</p>
         <p>The British army asked for volunteers and so Shoshana became a nurse, first in Egypt and later in Italy and
           Shmuel was recruited to the jewish battalion and was sent to dig trenches in Amariya next to Alexandria
@@ -3148,10 +2703,7 @@
         <p>They filled the pockets, used some for heating and buried the rest under a tree.</p>
         <p>Years to come, Shimon return to the place, but found a big highway instead of tree and the treasure was lost.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>The POWs were sent to do various jobs in Germany.</p>
         <p>Speaking German helped Shimon as he took care of his men and the other POW who were with him.</p>
         <p>When a coal cart flipped over, Shimon propsed to flip it back in exchange for a day off for his friends (they
@@ -3170,10 +2722,7 @@
           and a chicken coop.</p>
         <p>His many tales from the farm include how he ate a whole chicken, removed a tumor from a goat's udder and he
           nearly lost his ear when a cart slipped over his head.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>For more then four decades Shimon and Shoshana operated their farmed and raised four children.</p>
         <p>In 1991 they decided to retire and began travelling the world with their children and grandchildren.</p>
         <p>This tradition continued even after Shoshana has succumbed to cancer in 1998.</p>
@@ -3187,15 +2736,9 @@
           <img src="./images/eulogy.jpg" alt="Shimon Shmuel 1921-2012" height="640" width="480" />
           <figcaption>Shimon Shmuel 1921-2012</figcaption>
         </figure>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h2>Appendices</h2>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h3>Appendix I: Letter to Hillel, 1953</h3>
         <p>Happy birthday! I’m writing you this letter, dear brother, just to show you we haven’t forgotten your
           birthday.
@@ -3212,10 +2755,7 @@
         <p>In the meantime, may your family have peace. May god bring you good rain, as we had, and plenty of vegetables
           you can pick from the mud.</p>
         <p>Yours, Shimon</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h3>Appendix II: An Invitation (Letter to Hillel Shmuel, 1954)</h3>
         <p>The Shmuel family of Yokneam is honoured to invite the Shmuel family of Menahemia to the wedding of their
           son,
@@ -3228,10 +2768,7 @@
         <p>There’s no need to bring or send any additional clothes for the children as we got plenty.</p>
         <p>They could stay here over the Shavuot holiday and Shoshana will bring them back home.</p>
         <p>We are making big preparations and if you don’t come, it’ll all be ruined as we don’t have a fridge.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h3>Appendix III: Teddy</h3>
         <p>During the 50s we used to take the children once a year to a fun day - visiting the zoo in Tel Aviv and
           riding
@@ -3255,10 +2792,7 @@
           in different toy shops but we couldn’t find anyone like Amosi who can turn his head and move his arms and
           legs.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>As I turned 80s, I found the perfect bear at a shop at <a href="https://en.wikipedia.org/wiki/Stein_am_Rhein"
             target="_blank" rel="noreferrer noopener">Stein Am Rhein</a>.</p>
         <p>It also had a small pin on his back to secure him to the shirt inside the pocket.</p>
@@ -3266,10 +2800,7 @@
         <p>I asked the elderly women we met if he’s going to grow and at first they didn’t know what I was talking about
           because of my dark shirt but I pointed him out to them and they laughed.</p>
         <p>“No”, they said “As long as he won’t eat vegetables, he will stay small”.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>But thus began the troubles, which were scenes I re-enacted to the entertainment of my guests: how can we get
           him across the border as he doesn’t have a passport.</p>
         <p>We smuggled him home but the next day he was placed in jail for trespassing.</p>
@@ -3298,19 +2829,13 @@
         <p>When my family would visit me every Saturday evening and gather around the table the first question they
           would
           ask was “What has Teddy done this time and tried to interpret the scene the bears reenacted.</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <h3><a name="short-stories">Appendix IV: Short Stories</a></h3>
         <p>“Sagt der Scheich zum Emir:<br /> Erst zahlen wir, dann gehen wir;</p>
         <p>Sagt der Emir zum Scheich:<br />Zahlen wir nicht und gehen wir gleich!”</p>
         <p>(Old German rhyme: The Sheikh told the Emir: First we pay, then we leave. The Emir told the Sheikh: Let’s not
           pay and just go!”)</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>A farmer from a small and faraway village was required to appear at the IRS to sign some papers.</p>
         <p>He woke up early in the morning, before the rooster called, harnessed the horse to the wagon, took the
           sandwiches his wife made him the night before and headed out, for the first time going farther than 10 miles
@@ -3336,10 +2861,7 @@
         <p>When he arrived in the evening, his neighbors came to hear his stories about the big city and he told them
           about the high buildings, the horse-less wagons and about the hotel and the dinner.</p>
         <p>“One thing one must know”, he noted, “you will finish the soup, one way to the other!”</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>A rabbi was approached by a Jew who complained he cannot handle his ten children.</p>
         <p>Finance, God willing, is not an issue but the children are noisy, fight all the time and wreak such havoc the
           house is never quiet.</p>
@@ -3357,10 +2879,7 @@
           pleasant to be in”.</p>
         <p>The rabbi wondered “And aren’t the children fighting?” and the Jew replied “they fight, that’s the nature of
           children, but the house is filled with joy and there’s no dull moment!”</p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>A farmer one found a technique to train his horse to work without eating.</p>
         <p>Every day he would ration the horse’ meals smaller and smaller and after two weeks he didn’t feed the horse
           at
@@ -3368,10 +2887,7 @@
         <p>Unfortunately, the horse died and the farmer went bankrupt before he managed sign the patent for his
           technique.
         </p>
-      </section>
-    </article>
-    <article class="page">
-      <section class="page_content">
+
         <p>A guy comes to the rabbi and asks to know the gender of his unborn child.</p>
         <p>The rabbi assures him it's going to be a boy and the prove his confidence he writes his predicition in a
           small
@@ -3383,9 +2899,9 @@
         <p>"And if it's a girl?"</p>
         <p>"Well, we'll then go back to check the note and see that it's the memory that failed and I have indeed
           predicted correctly..."</p>
-      </section>
-    </article>
-  </main>
+      </article>
+    </main>
+  </div>
 </body>
 
 </html>

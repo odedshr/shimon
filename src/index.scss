@@ -1,29 +1,48 @@
 @import 'vars';
 @import 'svg-ui';
 @import 'svg-animations';
+@import 'loading-animation';
 
 html {
   font-size: 62.5%;
   height: 100vh;
 
   --color-primary: #212121;
-  --book-height: 840px;
-  --book-width: 1050px;
   --body-height: 100vh;
 }
 
 body {
   counter-reset: figure;
+  counter-reset: page;
 
   box-sizing: border-box;
   color: $clr-primary;
+
   font-family: 'EB Garamond', serif;
   font-size: 1.6rem;
-  height: var(--body-height);
   margin: 0;
-  min-height: 100vh;
   padding: 0;
   position: relative;
+  height: var(--body-height);
+
+  &[data-state="loading"] {
+    .book { opacity: 0; } 
+  }
+  &[data-state="loading-background"] {
+    .book_nav { opacity: 0; } 
+  }
+
+  &[data-page="first"] {
+    .book_nav_toc, .book_nav_backward {
+      display: none;
+    }
+  }
+
+  &[data-page="last"] {
+    .book_nav_forward {
+      display: none;
+    }
+  }
 }
 
 h1 {
@@ -64,8 +83,23 @@ h2 {
   text-transform: uppercase;
 }
 
+.bookCover {
+  @supports(display:grid) {
+    display: grid;
+    place-items: center;
+  }
+  @supports(position: sticky) {
+    position: sticky;
+  }
+
+  height: 100vh;
+  top: 0;
+  width: 100vw;
+}
+
 .book_nav {
   z-index: 11;
+  transition: opacity 0.5s ease-in-out;
 
   a {
     color: $clr-bg;
@@ -86,16 +120,22 @@ h2 {
   background-repeat: no-repeat;
   background-position: center left;
   background-size: 1.5rem;
-  top: -0.25rem;
-  left: 3rem;
+  left: calc(50% + 2rem);
   padding-left: 1rem;
+  top: 1.5rem;
   width: 10rem;
+  
+  @media screen and (min-width: $scr-tablet-min) {
+    left: 3rem;
+    top: -0.25rem;
+  }
 }
 
 .book_nav_backward,
 .book_nav_forward {
-  bottom: 1.5rem;
-  height: 3.2rem;
+  background-repeat: no-repeat;
+  bottom: 4rem;
+  height: 1rem;
   width: 3.2rem;
 
   span {
@@ -104,14 +144,17 @@ h2 {
 }
 
 .book_nav_backward { 
-  left: 7rem;
-
-  svg {
-    transform: rotate(180deg);
+  background-image: url(assets/arrow.svg);
+  transform: rotate(180deg);
+  left: calc(50% + 2rem);
+  
+  @media screen and (min-width: $scr-tablet-min) {
+    left: 7rem;
   }
 }
 
 .book_nav_forward {
+  background-image: url(assets/arrow.svg);
   right: 7rem;
 }
 
@@ -145,6 +188,7 @@ h2 {
 }
 
 .book {
+  aspect-ratio: 1050 / 850;
   background-image: url(./assets/book.png);
   background-size: contain;
   background-position: right;
@@ -152,14 +196,17 @@ h2 {
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  height: var(--book-height);
+  // height: var(--book-height);
   margin: 0.5rem 0;
   padding: 0;
   perspective: 100rem;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  //top: 50%;
+  //transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   transition: all 0.25s ease-in-out;
-  width: var(--book-width);
+  // width: var(--book-width);
+  max-height: 90vh;
+  width: clamp(240px, 1050px, 180vw); 
   
   @supports(position: -webkit-sticky) {
     position: -webkit-sticky;
@@ -172,11 +219,13 @@ h2 {
     background-position: center;
     background-size: contain;
     margin: 0.5rem auto;
-    transform: translate(0, -50%);
+    transform: translateX(0);
+    width: clamp(240px, 1050px, 90vw);
   }
 }
 
 .page {
+  counter-increment: page;
   background-image: url(./assets/page-right.png); // by default, set for mobile, pages are right-side only
   background-position: right;
   background-repeat: no-repeat;
@@ -187,7 +236,7 @@ h2 {
   flex: 1 1 50%;
   height: 100%;
   margin: 0;
-  padding: 5rem 6rem 5rem 2rem;
+  padding: 6rem 7rem 6rem 2rem;
   position: absolute;
   transform-origin: 100% 0;
   right: 0;
@@ -199,9 +248,9 @@ h2 {
     justify-content: center;
   }
 
-  &:not([data-page-number="0"]):after { // page-number
-    bottom: 2.5rem;
-    content: attr(data-page-number);
+  &:not(:first-of-type):after { // page-number
+    bottom: 4rem;
+    content: counter(page);
     font-size: 1rem;
     position: absolute;
     left: 50%;
@@ -254,7 +303,7 @@ h2 {
       background-image: url(./assets/page-left.png);
       background-position: right;
       left: 0;
-      padding: 5rem 2rem 5rem 7rem;
+      padding: 6rem 2rem 6rem 7rem;
       right: auto; // on tablet, default side is left
     }
 
@@ -412,7 +461,7 @@ figure {
     font-size: 1.4rem;
 
     &::before {
-      counter-increment: figure;                   
+      counter-increment: figure;
       content: "Fig " counter(figure) ": ";
     }
   }

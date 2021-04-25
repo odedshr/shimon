@@ -27,9 +27,11 @@ function embedSVG(imgElm) {
             [...imgElm.classList.values()].forEach(item => svgElm.classList.add(item));
             imgElm.parentNode.replaceChild(svgElm, imgElm);
         }
+        return svgElm;
     });
 }
 function embedAllSVGs() {
-    document.querySelectorAll('img[data-svg="embed"]').forEach(elm => embedSVG(elm));
+    const svgImages = Array.from(document.querySelectorAll('img[data-svg="embed"]'));
+    return Promise.all(svgImages.map(elm => embedSVG(elm)));
 }
 export { embedAllSVGs };
