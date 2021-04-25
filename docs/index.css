@@ -400,6 +400,7 @@ html {
 body {
   counter-reset: figure;
   counter-reset: page;
+  counter-reset: appendix;
   box-sizing: border-box;
   color: #F2DEBD;
   font-family: 'EB Garamond', serif;
@@ -593,7 +594,7 @@ h2 {
       z-index: 9; }
       .page[data-page="current"] + .page + .page {
         z-index: 8; }
-        .page[data-page="current"] + .page + .page + .page ~ .page {
+        body[data-state="idle"] .page[data-page="current"] + .page + .page + .page ~ .page {
           display: none; }
     @media screen and (max-width: 799px) {
       .page[data-page="current"][data-anim="backward"] {
@@ -729,5 +730,9 @@ figure {
     figure figcaption::before {
       counter-increment: figure;
       content: "Fig " counter(figure) ": "; }
+
+.appendix::before {
+  counter-increment: figure;
+  content: "Appendix " counter(figure,upper-roman) ": "; }
 
 /*# sourceMappingURL=index.css.map */

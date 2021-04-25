@@ -14,6 +14,7 @@ html {
 body {
   counter-reset: figure;
   counter-reset: page;
+  counter-reset: appendix;
 
   box-sizing: border-box;
   color: $clr-primary;
@@ -266,7 +267,7 @@ h2 {
       & + .page {
         z-index: 8;
 
-        & + .page ~ .page { // otherwise the page is very heavy
+        body[data-state="idle"] & + .page ~ .page { // otherwise the page is very heavy
           display: none;
         }
       }
@@ -464,5 +465,12 @@ figure {
       counter-increment: figure;
       content: "Fig " counter(figure) ": ";
     }
+  }
+}
+
+.appendix {
+  &::before {
+    counter-increment: figure;
+    content: "Appendix " counter(figure, upper-roman) ": ";
   }
 }
