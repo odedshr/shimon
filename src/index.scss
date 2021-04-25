@@ -471,6 +471,6 @@ figure {
 .appendix {
   &::before {
     counter-increment: figure;
-    content: "Appendix " counter(figure, upper-roman) ": ";
+    content: "Appendix " counter(figure, lower-roman) ": ";
   }
 }
