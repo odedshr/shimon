@@ -1,0 +1,111 @@
+.book_cover {
+  @supports(display:grid) {
+    display: grid;
+    place-items: center;
+  }
+  @supports(position: sticky) {
+    position: sticky;
+  }
+
+  height: 100vh;
+  top: 0;
+  width: 100vw;
+}
+
+.book_nav {
+  z-index: 11;
+  transition: opacity 0.5s ease-in-out;
+
+  a {
+    color: $clr-bg;
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    position:absolute;
+    z-index: 11;
+
+    &[disabled="true"] {
+      display: none;
+    }
+  }
+}
+
+.book_nav_toc {
+  background-image: url(assets/back-to-contents.svg);
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: 1.5rem;
+  left: calc(50% + 2rem);
+  padding-left: 1rem;
+  top: 1.5rem;
+  width: 10rem;
+  
+  @media screen and (min-width: $scr-tablet-min) {
+    left: 3rem;
+    top: -0.25rem;
+  }
+}
+
+.book_nav_backward,
+.book_nav_forward {
+  background-repeat: no-repeat;
+  bottom: 4rem;
+  height: 1rem;
+  width: 3.2rem;
+
+  span {
+    display: none;
+  }
+}
+
+.book_nav_backward { 
+  background-image: url(assets/arrow.svg);
+  transform: rotate(180deg);
+  left: calc(50% + 2rem);
+  
+  @media screen and (min-width: $scr-tablet-min) {
+    left: 7rem;
+  }
+}
+
+.book_nav_forward {
+  background-image: url(assets/arrow.svg);
+  right: 7rem;
+}
+
+.book {
+  aspect-ratio: 1050 / 850;
+  background-image: url(./assets/book.png);
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  // height: var(--book-height);
+  margin: 0.5rem 0;
+  padding: 0;
+  perspective: 100rem;
+  //top: 50%;
+  //transform: translate(-50%, -50%);
+  transform: translateX(-50%);
+  transition: all 0.25s ease-in-out;
+  // width: var(--book-width);
+  max-height: 90vh;
+  width: clamp(240px, 1050px, 180vw); 
+  
+  @supports(position: -webkit-sticky) {
+    position: -webkit-sticky;
+  }
+  @supports(position: sticky) {
+    position: sticky;
+  }
+
+  @media screen and (min-width: $scr-tablet-min) {
+    background-position: center;
+    background-size: contain;
+    margin: 0.5rem auto;
+    transform: translateX(0);
+    width: clamp(240px, 1050px, 90vw);
+  }
+}
