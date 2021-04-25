@@ -42,7 +42,7 @@ function paginateBook(report, currentPageId) {
     return __awaiter(this, void 0, void 0, function* () {
         const bookElm = document.querySelector('.book') || document.createElement('div');
         const pageList = new PageList();
-        const items = [...document.querySelectorAll('.page > *:not(.page-anchor)')];
+        const items = [...document.querySelectorAll('.page_content > *:not(.page-anchor)')];
         const itemCount = items.length - 1;
         removeAllPages();
         let page = addPage(pageList, bookElm, undefined);

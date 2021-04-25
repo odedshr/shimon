@@ -43,7 +43,7 @@ function removeAllPages() {
 async function paginateBook(report: (status: number, page: Page) => void, currentPageId: string): Promise<PageList> {
   const bookElm: HTMLElement = document.querySelector('.book') || document.createElement('div');
   const pageList = new PageList();
-  const items = [...document.querySelectorAll('.page > *:not(.page-anchor)')];
+  const items = [...document.querySelectorAll('.page_content > *:not(.page-anchor)')];
   const itemCount = items.length - 1;
 
   removeAllPages();
