@@ -14,7 +14,7 @@ import { initNavButtons, getPageSetter } from './navigation.js';
 import { initScrollHandler, setVerticalScroll, updateBodyHeight } from './page-scroll.js';
 import { embedAllSVGs } from './embed-svg.js';
 import { PageList } from './Page.js';
-import { throttle } from './throttle.js';
+import { getResizeHandler } from './resize-handler.js';
 const pageList = new PageList();
 const tocLinks = new TOCLinks();
 function init() {
@@ -25,7 +25,8 @@ function init() {
         appendTOCLinks(getElementOrCreateOne('.book_toc'), tocLinks);
         yield embedAllSVGs();
         window.addEventListener('hashchange', handleHashChange.bind({}, setPage));
-        window.addEventListener('resize', () => throttle(() => __awaiter(this, void 0, void 0, function* () { return pageList.set(yield formatBook(tocLinks)); }), 500));
+        window.addEventListener('resize', getResizeHandler());
+        window.addEventListener('resize-end', () => __awaiter(this, void 0, void 0, function* () { return pageList.set(yield formatBook(tocLinks)); }));
         pageList.set(yield formatBook(tocLinks));
         handleHashChange(setPage);
         initScrollHandler(pageList, setPage);

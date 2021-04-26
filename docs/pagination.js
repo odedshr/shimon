@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { PageList } from './Page.js';
+import { isDoubleSided } from './navigation.js';
 function getAnchor(pageId) {
     const anchor = document.createElement('a');
     anchor.classList.add('page-anchor');
@@ -57,14 +58,14 @@ function paginateBook(report, currentPageId) {
             }
             if (section.scrollHeight > maxHeight || itemIsHeader) {
                 if (isMatch(page, currentPageId)) {
-                    pageList.setCurrent(page);
-                    report(-1, page);
+                    pageList.setCurrent((isDoubleSided() && !(pageList.length % 2)) ? pageList[pageList.length - 2] : page);
+                    report(-1);
                 }
                 page = addPage(pageList, bookElm, item.getAttribute('name') || undefined);
                 section = page.pageContentElm;
                 section.appendChild(item);
             }
-            report(i / itemCount, page);
+            report(i / itemCount);
             if (++i <= itemCount) {
                 addNextItem(resolve);
             }

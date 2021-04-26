@@ -104,4 +104,4 @@ function initNavButtons(pages: PageList, prevBtn: HTMLElement, nextBtn: HTMLElem
   nextBtn.addEventListener('click', evt => preventDefaultAndThrottle(() => updateLocation(getTargetPageSlug(pages, 1)), evt));
 }
 
-export { initNavButtons, updatePagePositionDescription, getCurrentPage, getPageSetter }
+export { isDoubleSided, initNavButtons, updatePagePositionDescription, getCurrentPage, getPageSetter }

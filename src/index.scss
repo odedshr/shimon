@@ -45,4 +45,21 @@ body {
       display: none;
     }
   }
+
+  &[data-state="resizing"] {
+    .book {
+      display: none;
+    }
+
+    .book_cover {
+      counter-reset: x var(--window-width) y var(--window-height);
+      color: silver;
+      font-family:'Courier New', Courier, monospace;
+      font-size: 1.2rem;
+          
+      &:before {
+        content: '[' counter(x) ' x ' counter(y) ']';
+      }
+    }
+  }
 }

@@ -733,5 +733,14 @@ body {
     display: none; }
   body[data-page="last"] .book_nav_forward {
     display: none; }
+  body[data-state="resizing"] .book {
+    display: none; }
+  body[data-state="resizing"] .book_cover {
+    counter-reset: x var(--window-width) y var(--window-height);
+    color: silver;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem; }
+    body[data-state="resizing"] .book_cover:before {
+      content: "[" counter(x) " x " counter(y) "]"; }
 
 /*# sourceMappingURL=index.css.map */

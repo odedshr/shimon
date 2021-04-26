@@ -1,11 +1,11 @@
 import { TOCLinks, initHeaders, getTOCLinks, appendTOCLinks, clearTOCLinksPageNumbers, refreshTOCLinks } from './toc.js';
 import { getPageByLocation, getCurrentPageId } from './hash-parser.js';
 import { paginateBook } from './pagination.js';
-import { initNavButtons, getPageSetter, getCurrentPage, updatePagePositionDescription } from './navigation.js';
+import { initNavButtons, getPageSetter } from './navigation.js';
 import { initScrollHandler, setVerticalScroll, updateBodyHeight } from './page-scroll.js';
 import { embedAllSVGs } from './embed-svg.js';
 import { Page, PageList } from './Page.js';
-import { throttle } from './throttle.js';
+import { getResizeHandler } from './resize-handler.js';
 
 const pageList: PageList = new PageList();
 const tocLinks: TOCLinks = new TOCLinks();
@@ -25,7 +25,8 @@ async function init() {
   await embedAllSVGs();
 
   window.addEventListener('hashchange', handleHashChange.bind({}, setPage));
-  window.addEventListener('resize', () => throttle(async () => pageList.set(await formatBook(tocLinks)), 500));
+  window.addEventListener('resize', getResizeHandler());
+  window.addEventListener('resize-end', async () => pageList.set(await formatBook(tocLinks)));
 
   pageList.set(await formatBook(tocLinks));
   handleHashChange(setPage);

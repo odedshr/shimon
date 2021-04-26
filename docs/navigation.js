@@ -88,4 +88,4 @@ function initNavButtons(pages, prevBtn, nextBtn) {
     prevBtn.addEventListener('click', evt => preventDefaultAndThrottle(() => updateLocation(getTargetPageSlug(pages, -1)), evt));
     nextBtn.addEventListener('click', evt => preventDefaultAndThrottle(() => updateLocation(getTargetPageSlug(pages, 1)), evt));
 }
-export { initNavButtons, updatePagePositionDescription, getCurrentPage, getPageSetter };
+export { isDoubleSided, initNavButtons, updatePagePositionDescription, getCurrentPage, getPageSetter };

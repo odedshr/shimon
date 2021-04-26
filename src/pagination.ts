@@ -1,4 +1,5 @@
 import { PageList, Page } from './Page.js';
+import { isDoubleSided } from './navigation.js';
 
 function getAnchor(pageId: string) {
   const anchor = document.createElement('a');
@@ -40,7 +41,7 @@ function removeAllPages() {
   [...document.querySelectorAll('.page')].forEach(page => page.remove());
 }
 
-async function paginateBook(report: (status: number, page: Page) => void, currentPageId: string): Promise<PageList> {
+async function paginateBook(report: (status: number) => void, currentPageId: string): Promise<PageList> {
   const bookElm: HTMLElement = document.querySelector('.book') || document.createElement('div');
   const pageList = new PageList();
   const items = [...document.querySelectorAll('.page_content > *:not(.page-anchor)')];
@@ -63,8 +64,9 @@ async function paginateBook(report: (status: number, page: Page) => void, curren
 
     if (section.scrollHeight > maxHeight || itemIsHeader) {
       if (isMatch(page, currentPageId)) {
-        pageList.setCurrent(page);
-        report(-1, page);
+        // if double-sided and current page is right-side
+        pageList.setCurrent((isDoubleSided() && !(pageList.length % 2)) ? pageList[pageList.length - 2] : page);
+        report(-1);
       }
 
       page = addPage(pageList, bookElm, item.getAttribute('name') || undefined);
@@ -72,7 +74,7 @@ async function paginateBook(report: (status: number, page: Page) => void, curren
       section.appendChild(item);
     }
 
-    report(i / itemCount, page);
+    report(i / itemCount);
 
     if (++i <= itemCount) {
       addNextItem(resolve)
