@@ -10,11 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { updateLocation } from './hash-parser.js';
 import { throttle } from './throttle.js';
 const minBookWidth = 800;
-function getCurrentPage(pages) {
-    var _a;
-    const pageElm = (_a = pages.getCurrent()) === null || _a === void 0 ? void 0 : _a.pageElm;
-    return pages.get((pageElm === null || pageElm === void 0 ? void 0 : pageElm.getAttribute('name')) || '') || pages[0];
-}
 function isDoubleSided() {
     return window.innerWidth > minBookWidth;
 }
@@ -63,7 +58,7 @@ function getPageSetter() {
         if (!page) {
             return;
         }
-        let currentPage = getCurrentPage(pages);
+        let currentPage = pages.getCurrent() || pages[0];
         const pageNumber = page.id;
         const stepSize = getStepSize(pageNumber);
         const step = pageNumber < currentPage.id ? -stepSize : stepSize;
@@ -73,7 +68,7 @@ function getPageSetter() {
     });
 }
 function getTargetPageSlug(pages, direction) {
-    const page = getCurrentPage(pages);
+    const page = pages.getCurrent() || pages[0];
     const pageNumber = page.id;
     const stepSize = direction * getStepSize(pageNumber);
     const targetPage = pages[Math.min(Math.max(0, pageNumber + stepSize), pages.length - 1)];
@@ -88,4 +83,4 @@ function initNavButtons(pages, prevBtn, nextBtn) {
     prevBtn.addEventListener('click', evt => preventDefaultAndThrottle(() => updateLocation(getTargetPageSlug(pages, -1)), evt));
     nextBtn.addEventListener('click', evt => preventDefaultAndThrottle(() => updateLocation(getTargetPageSlug(pages, 1)), evt));
 }
-export { isDoubleSided, initNavButtons, updatePagePositionDescription, getCurrentPage, getPageSetter };
+export { isDoubleSided, initNavButtons, updatePagePositionDescription, getPageSetter };

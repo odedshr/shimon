@@ -27,4 +27,25 @@ function getResizeHandler() {
   }
 }
 
-export { getResizeHandler };
+//
+
+type BookSize = { width: number, height: number };
+const maxBookSize: BookSize = { width: 1050, height: 850 };
+let lastBookSize: BookSize = getCurrentBookSize();
+
+function getCurrentBookSize() {
+  return { width: window.innerWidth, height: window.innerHeight };
+}
+
+function isBookBiggerOrEqual(bookA: BookSize, bookB: BookSize) {
+  return (bookA.width >= bookB.width) && (bookA.height >= bookB.height);
+}
+
+function isResizingRequired() {
+  const bookSize = getCurrentBookSize();
+  const isRequired = isBookBiggerOrEqual(bookSize, maxBookSize) && isBookBiggerOrEqual(lastBookSize, maxBookSize);
+  lastBookSize = bookSize;
+  return !isRequired;
+}
+
+export { getResizeHandler, isResizingRequired };

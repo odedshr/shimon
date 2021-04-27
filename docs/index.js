@@ -9,12 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { TOCLinks, initHeaders, getTOCLinks, appendTOCLinks, clearTOCLinksPageNumbers, refreshTOCLinks } from './toc.js';
 import { getPageByLocation, getCurrentPageId } from './hash-parser.js';
-import { paginateBook } from './pagination.js';
-import { initNavButtons, getPageSetter } from './navigation.js';
+import { paginateBook, getPages } from './pagination.js';
+import { initNavButtons, getPageSetter, updatePagePositionDescription } from './navigation.js';
 import { initScrollHandler, setVerticalScroll, updateBodyHeight } from './page-scroll.js';
 import { embedAllSVGs } from './embed-svg.js';
 import { PageList } from './Page.js';
-import { getResizeHandler } from './resize-handler.js';
+import { getResizeHandler, isResizingRequired } from './resize-handler.js';
 const pageList = new PageList();
 const tocLinks = new TOCLinks();
 function init() {
@@ -26,9 +26,8 @@ function init() {
         yield embedAllSVGs();
         window.addEventListener('hashchange', handleHashChange.bind({}, setPage));
         window.addEventListener('resize', getResizeHandler());
-        window.addEventListener('resize-end', () => __awaiter(this, void 0, void 0, function* () { return pageList.set(yield formatBook(tocLinks)); }));
-        pageList.set(yield formatBook(tocLinks));
-        handleHashChange(setPage);
+        window.addEventListener('resize-end', () => __awaiter(this, void 0, void 0, function* () { return isResizingRequired() ? pageList.set(yield formatBook(tocLinks)) : true; }));
+        pageList.set(isResizingRequired() ? yield formatBook(tocLinks) : getInitialPages(tocLinks));
         initScrollHandler(pageList, setPage);
     });
 }
@@ -54,11 +53,19 @@ function formatBook(tocLinks) {
         clearTOCLinksPageNumbers();
         const pages = yield paginateBook(updateProgress, getCurrentPageId());
         refreshTOCLinks(tocLinks, pages);
-        updateBodyHeight(pageList.length);
+        updateBodyHeight(pages.length);
         document.body.setAttribute('data-state', 'idle');
         document.body.removeAttribute('data-loading');
         return pages;
     });
+}
+function getInitialPages(tocLinks) {
+    var _a;
+    const pages = getPages(getCurrentPageId());
+    updatePagePositionDescription(((_a = pages.getCurrent()) === null || _a === void 0 ? void 0 : _a.id) || 0, pages.length);
+    refreshTOCLinks(tocLinks, pages);
+    updateBodyHeight(pages.length);
+    return pages;
 }
 function getElementByIdOrCreateOne(elmId, tag = 'a') {
     return document.getElementById(elmId) || document.createElement(tag);

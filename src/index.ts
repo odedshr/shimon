@@ -1,11 +1,11 @@
 import { TOCLinks, initHeaders, getTOCLinks, appendTOCLinks, clearTOCLinksPageNumbers, refreshTOCLinks } from './toc.js';
 import { getPageByLocation, getCurrentPageId } from './hash-parser.js';
-import { paginateBook } from './pagination.js';
-import { initNavButtons, getPageSetter } from './navigation.js';
+import { paginateBook, getPages } from './pagination.js';
+import { initNavButtons, getPageSetter, updatePagePositionDescription } from './navigation.js';
 import { initScrollHandler, setVerticalScroll, updateBodyHeight } from './page-scroll.js';
 import { embedAllSVGs } from './embed-svg.js';
 import { Page, PageList } from './Page.js';
-import { getResizeHandler } from './resize-handler.js';
+import { getResizeHandler, isResizingRequired } from './resize-handler.js';
 
 const pageList: PageList = new PageList();
 const tocLinks: TOCLinks = new TOCLinks();
@@ -26,10 +26,9 @@ async function init() {
 
   window.addEventListener('hashchange', handleHashChange.bind({}, setPage));
   window.addEventListener('resize', getResizeHandler());
-  window.addEventListener('resize-end', async () => pageList.set(await formatBook(tocLinks)));
+  window.addEventListener('resize-end', async () => isResizingRequired() ? pageList.set(await formatBook(tocLinks)) : true);
 
-  pageList.set(await formatBook(tocLinks));
-  handleHashChange(setPage);
+  pageList.set(isResizingRequired() ? await formatBook(tocLinks) : getInitialPages(tocLinks));
 
   initScrollHandler(pageList, setPage);
 }
@@ -61,10 +60,22 @@ async function formatBook(tocLinks: TOCLinks) {
 
   refreshTOCLinks(tocLinks, pages);
 
-  updateBodyHeight(pageList.length);
+  updateBodyHeight(pages.length);
 
   document.body.setAttribute('data-state', 'idle');
   document.body.removeAttribute('data-loading');
+
+  return pages;
+}
+
+function getInitialPages(tocLinks: TOCLinks) {
+  const pages = getPages(getCurrentPageId());
+
+  updatePagePositionDescription(pages.getCurrent()?.id || 0, pages.length);
+
+  refreshTOCLinks(tocLinks, pages);
+
+  updateBodyHeight(pages.length);
 
   return pages;
 }

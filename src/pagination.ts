@@ -16,7 +16,7 @@ function getNewPage(id: number, tocSlug?: string): Page {
   const pageElm = document.createElement('article');
   pageElm.classList.add('page');
   pageElm.setAttribute('name', slug);
-  pageElm.appendChild(getAnchor(slug))
+  pageElm.appendChild(getAnchor(slug));
 
   const pageContentElm = document.createElement('section');
   pageContentElm.classList.add('page_content')
@@ -91,4 +91,42 @@ async function paginateBook(report: (status: number) => void, currentPageId: str
   return new Promise(addNextItem);
 }
 
-export { paginateBook }
+// getPages() is used to load the initial page structure, without rebuilding the entire book;
+// it applies when the window size is bigger than book.maxSize;
+function getPages(currentPageId: string) {
+  const pages = new PageList();
+
+  [...document.querySelectorAll('.page')].forEach((pageElm, id) => {
+    let pageContentElm = (pageElm.querySelector('.page_content') || document.createElement('section')) as HTMLElement;
+    const slug = `page-${id + 1}`;
+    const tocSlug = pageElm.querySelector('h2, h3')?.getAttribute('name') || undefined;
+
+    pageElm.setAttribute('name', slug);
+    pageElm.appendChild(getAnchor(slug));
+
+    if (!pageContentElm.classList.length) {
+      pageContentElm.classList.add('page_content')
+      pageElm.appendChild(pageContentElm);
+    }
+
+    const page: Page = {
+      pageElm: pageElm as HTMLElement,
+      pageContentElm,
+      id,
+      slug,
+      tocSlug
+    }
+    pages.push(page);
+
+
+    if (isMatch(page, currentPageId)) {
+      // if double-sided and current page is right-side
+      pages.setCurrent((isDoubleSided() && !(pages.length % 2)) ? pages[pages.length - 2] : page);
+    }
+
+    return page;
+  })
+  return pages;
+}
+
+export { paginateBook, getPages }

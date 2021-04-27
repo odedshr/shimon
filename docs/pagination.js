@@ -79,4 +79,32 @@ function paginateBook(report, currentPageId) {
         return new Promise(addNextItem);
     });
 }
-export { paginateBook };
+function getPages(currentPageId) {
+    const pages = new PageList();
+    [...document.querySelectorAll('.page')].forEach((pageElm, id) => {
+        var _a;
+        let pageContentElm = (pageElm.querySelector('.page_content') || document.createElement('section'));
+        const slug = `page-${id + 1}`;
+        const tocSlug = ((_a = pageElm.querySelector('h2, h3')) === null || _a === void 0 ? void 0 : _a.getAttribute('name')) || undefined;
+        pageElm.setAttribute('name', slug);
+        pageElm.appendChild(getAnchor(slug));
+        if (!pageContentElm.classList.length) {
+            pageContentElm.classList.add('page_content');
+            pageElm.appendChild(pageContentElm);
+        }
+        const page = {
+            pageElm: pageElm,
+            pageContentElm,
+            id,
+            slug,
+            tocSlug
+        };
+        pages.push(page);
+        if (isMatch(page, currentPageId)) {
+            pages.setCurrent((isDoubleSided() && !(pages.length % 2)) ? pages[pages.length - 2] : page);
+        }
+        return page;
+    });
+    return pages;
+}
+export { paginateBook, getPages };

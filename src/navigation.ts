@@ -4,11 +4,6 @@ import { throttle } from './throttle.js';
 
 const minBookWidth = 800;
 
-function getCurrentPage(pages: PageList): Page {
-  const pageElm = pages.getCurrent()?.pageElm;
-  return pages.get(pageElm?.getAttribute('name') || '') || pages[0];
-}
-
 function isDoubleSided() {
   return window.innerWidth > minBookWidth
 }
@@ -72,7 +67,7 @@ function getPageSetter() {
       return;
     }
 
-    let currentPage = getCurrentPage(pages);
+    let currentPage = pages.getCurrent() || pages[0];
     const pageNumber = page.id;
     const stepSize = getStepSize(pageNumber);
     const step = pageNumber < currentPage.id ? -stepSize : stepSize;
@@ -85,7 +80,8 @@ function getPageSetter() {
 
 function getTargetPageSlug(pages: PageList, direction: 1 | -1) {
 
-  const page = getCurrentPage(pages);
+  const page = pages.getCurrent() || pages[0];
+
   const pageNumber = page.id;
   const stepSize = direction * getStepSize(pageNumber);
   const targetPage = pages[Math.min(Math.max(0, pageNumber + stepSize), pages.length - 1)];
@@ -104,4 +100,4 @@ function initNavButtons(pages: PageList, prevBtn: HTMLElement, nextBtn: HTMLElem
   nextBtn.addEventListener('click', evt => preventDefaultAndThrottle(() => updateLocation(getTargetPageSlug(pages, 1)), evt));
 }
 
-export { isDoubleSided, initNavButtons, updatePagePositionDescription, getCurrentPage, getPageSetter }
+export { isDoubleSided, initNavButtons, updatePagePositionDescription, getPageSetter }

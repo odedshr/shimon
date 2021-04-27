@@ -305,7 +305,7 @@ svg .secondary_bg {
   height: 5rem;
   left: 50%;
   position: absolute;
-  top: 50%;
+  top: 50vh;
   transform: translate(-50%, -50%);
   width: 16rem;
   z-index: 100; }
