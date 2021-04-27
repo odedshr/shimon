@@ -94,24 +94,10 @@ h2 {
       color: var(--color-primary);
     }
 
-    &:after {
-      content: "";
-      display: block;
-      height: 100%;
-      padding: 0.1rem;
-      position: absolute;
-      opacity: 0.5;
-      left: -.05rem;
-      transition: width 0.25s ease-in-out;
-      transform: skew(-25deg);
-      top: -.05rem;
-      width: 0;
-      z-index: -1;
-    }
-
-    &:hover:after {
-      background-color: white;
-      width: 100%;
+    &:hover {
+      text-shadow: 0 0.25rem rgba(0, 0, 0, 0.16);
+      position: relative;
+      top: -0.25rem;
     }
   }
 }
