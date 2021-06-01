@@ -745,4 +745,9 @@ body {
     body[data-state="resizing"] .book_cover:before {
       content: "[" counter(x) " x " counter(y) "]"; }
 
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-primary);
+  width: 25%; }
+
 /*# sourceMappingURL=index.css.map */
