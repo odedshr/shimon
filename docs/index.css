@@ -643,14 +643,22 @@ h2 {
   height: 100%; }
   .page_content p {
     line-height: 1.5; }
-    .page_content p:first-of-type {
-      margin-top: 4rem; }
     .page_content p:first-child {
-      margin-top: 0; }
+      margin-top: 4rem; }
     .page_content p:before {
       content: "";
       display: inline-block;
       width: 1rem; }
+  .page_content h2 + p:before,
+  .page_content h2 + figure + p:before {
+    content: none; }
+  .page_content h2 + p::first-letter,
+  .page_content h2 + figure + p::first-letter {
+    initial-letter: 1;
+    font-size: 2.5rem;
+    float: left;
+    line-height: 3rem;
+    margin-right: 0.2rem; }
   .page_content a:not(.toc_item) {
     position: relative; }
     .page_content a:not(.toc_item), .page_content a:not(.toc_item) a:visited {
@@ -664,10 +672,11 @@ figure {
   display: block;
   text-align: center; }
   figure img {
-    width: 100%;
+    max-width: 100%;
     height: auto; }
   figure.photo {
-    position: relative; }
+    position: relative;
+    margin: 0 auto; }
     figure.photo:before {
       content: "";
       position: absolute;
