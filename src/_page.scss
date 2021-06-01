@@ -1,7 +1,7 @@
 .page {
   counter-increment: page-counter;
   background-image: url(./assets/page-right.png); // by default, set for mobile, pages are right-side only
-  background-position: right;
+  background-position: left;
   background-repeat: no-repeat;
   background-size: contain;
   box-sizing: border-box;

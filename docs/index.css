@@ -452,7 +452,6 @@ body[data-state="loading-background"] .signature {
   right: 7rem; }
 
 .book {
-  aspect-ratio: 1050 / 850;
   background-image: url(./assets/book.png);
   background-size: contain;
   background-position: right;
@@ -467,6 +466,12 @@ body[data-state="loading-background"] .signature {
   transition: all 0.25s ease-in-out;
   max-height: 90vh;
   width: clamp(240px, 1050px, 180vw); }
+  @supports (aspect-ratio: initial) {
+    .book {
+      aspect-ratio: 1050 / 850; } }
+  @supports not (aspect-ratio: initial) {
+    .book {
+      height: 850px; } }
   @supports (position: -webkit-sticky) {
     .book {
       position: -webkit-sticky; } }
@@ -484,7 +489,7 @@ body[data-state="loading-background"] .signature {
 .page {
   counter-increment: page-counter;
   background-image: url(./assets/page-right.png);
-  background-position: right;
+  background-position: left;
   background-repeat: no-repeat;
   background-size: contain;
   box-sizing: border-box;
