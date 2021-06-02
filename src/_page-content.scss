@@ -121,6 +121,10 @@ figure {
   display: block;
   text-align: center;
 
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   img {
     max-width: 100%;
     height: auto;
